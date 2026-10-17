@@ -1,0 +1,836 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>CodeForGood | Connect Skills with Charities</title>
+<!--
+  CodeForGood — IKU Womxn in STEM Hackathon
+  A single-file web app (HTML + CSS + JavaScript).
+  Charities post projects. Students, companies and individuals offer their skills.
+  Data is saved in your browser with localStorage (no server needed).
+
+  HOW THE FILE IS ORGANISED
+  1. CSS     – how things look
+  2. HTML    – the page structure
+  3. JS      – the behaviour (data, filtering, forms, modal)
+-->
+<style>
+  /* ---------- 1. CSS ---------- */
+  :root {
+    --purple: #6d28d9;
+    --purple-dark: #4c1d95;
+    --pink: #ec4899;
+    --teal: #0d9488;
+    --bg: #faf7ff;
+    --card: #ffffff;
+    --text: #1f1b2e;
+    --muted: #6b6880;
+    --border: #e6e0f5;
+    --radius: 16px;
+    --shadow: 0 6px 24px rgba(76, 29, 149, .10);
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.55;
+  }
+  a { color: inherit; }
+  button { font: inherit; cursor: pointer; }
+  .container { max-width: 1120px; margin: 0 auto; padding: 0 20px; }
+
+  /* Navigation */
+  header.nav {
+    position: sticky; top: 0; z-index: 50;
+    background: rgba(255,255,255,.9); backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-inner { display: flex; align-items: center; justify-content: space-between; height: 64px; }
+  .logo { font-weight: 800; font-size: 1.25rem; text-decoration: none; color: var(--purple-dark); }
+  .logo span { color: var(--pink); }
+  nav a {
+    text-decoration: none; margin-left: 20px; font-weight: 600; color: var(--muted);
+    padding: 6px 2px; border-bottom: 2px solid transparent;
+  }
+  nav a:hover { color: var(--purple); border-color: var(--purple); }
+
+  /* Buttons */
+  .btn {
+    display: inline-block; border: 0; border-radius: 999px; padding: 12px 24px;
+    font-weight: 700; text-decoration: none; transition: transform .15s, box-shadow .15s;
+  }
+  .btn:hover { transform: translateY(-2px); box-shadow: var(--shadow); }
+  .btn-primary { background: linear-gradient(135deg, var(--purple), var(--pink)); color: #fff; }
+  .btn-light { background: #fff; color: var(--purple-dark); }
+  .btn-outline { background: transparent; border: 2px solid var(--purple); color: var(--purple); }
+  .btn-sm { padding: 8px 16px; font-size: .9rem; }
+
+  /* Hero */
+  .hero {
+    background: linear-gradient(135deg, var(--purple-dark), var(--purple) 55%, var(--pink));
+    color: #fff; padding: 80px 0 90px; position: relative; overflow: hidden;
+  }
+  .hero::before, .hero::after {
+    content: ""; position: absolute; border-radius: 50%; background: rgba(255,255,255,.08);
+  }
+  .hero::before { width: 420px; height: 420px; right: -120px; top: -140px; }
+  .hero::after { width: 260px; height: 260px; left: -80px; bottom: -120px; }
+  .hero .container { position: relative; z-index: 1; }
+  .eyebrow {
+    display: inline-block; background: rgba(255,255,255,.18); padding: 6px 14px;
+    border-radius: 999px; font-size: .85rem; font-weight: 600; margin-bottom: 18px;
+  }
+  .hero h1 { font-size: clamp(2rem, 5vw, 3.4rem); line-height: 1.15; max-width: 760px; }
+  .hero p { margin: 18px 0 30px; max-width: 600px; font-size: 1.15rem; opacity: .95; }
+  .hero .btn + .btn { margin-left: 10px; }
+
+  /* Stats */
+  .stats { margin-top: -44px; position: relative; z-index: 2; }
+  .stats-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 16px;
+  }
+  .stat {
+    background: var(--card); border-radius: var(--radius); padding: 22px; text-align: center;
+    box-shadow: var(--shadow); border: 1px solid var(--border);
+  }
+  .stat strong { display: block; font-size: 2rem; color: var(--purple); }
+  .stat span { color: var(--muted); font-size: .9rem; }
+
+  /* Sections */
+  section { padding: 64px 0 20px; }
+  .section-head { margin-bottom: 26px; }
+  .section-head h2 { font-size: 1.9rem; color: var(--purple-dark); }
+  .section-head p { color: var(--muted); max-width: 640px; }
+
+  /* How it works */
+  .steps { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 18px; }
+  .step {
+    background: var(--card); border: 1px solid var(--border); border-radius: var(--radius);
+    padding: 24px;
+  }
+  .step .num {
+    width: 40px; height: 40px; border-radius: 50%; display: grid; place-items: center;
+    background: linear-gradient(135deg, var(--purple), var(--pink)); color: #fff; font-weight: 800;
+    margin-bottom: 12px;
+  }
+  .step h3 { margin-bottom: 6px; }
+  .step p { color: var(--muted); font-size: .95rem; }
+
+  /* Filters */
+  .filters {
+    background: var(--card); border: 1px solid var(--border); border-radius: var(--radius);
+    padding: 18px; margin-bottom: 22px; box-shadow: var(--shadow);
+  }
+  .filter-row { display: flex; flex-wrap: wrap; gap: 12px; margin-bottom: 12px; }
+  input, select, textarea {
+    font: inherit; padding: 11px 14px; border: 1.5px solid var(--border); border-radius: 12px;
+    background: #fff; color: var(--text); width: 100%;
+  }
+  input:focus, select:focus, textarea:focus, button:focus-visible {
+    outline: 3px solid rgba(109, 40, 217, .3); border-color: var(--purple);
+  }
+  .filter-row input { flex: 2 1 240px; }
+  .filter-row select { flex: 1 1 160px; }
+  .chips { display: flex; flex-wrap: wrap; gap: 8px; }
+  .chip {
+    border: 1.5px solid var(--border); background: #fff; color: var(--muted);
+    border-radius: 999px; padding: 6px 14px; font-size: .85rem; font-weight: 600;
+  }
+  .chip:hover { border-color: var(--purple); color: var(--purple); }
+  .chip.active { background: var(--purple); border-color: var(--purple); color: #fff; }
+  .result-count { color: var(--muted); margin-bottom: 14px; font-weight: 600; }
+
+  /* Project cards */
+  .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 20px; }
+  .card {
+    background: var(--card); border: 1px solid var(--border); border-radius: var(--radius);
+    overflow: hidden; display: flex; flex-direction: column; box-shadow: var(--shadow);
+    transition: transform .2s;
+  }
+  .card:hover { transform: translateY(-4px); }
+  .card-top { padding: 18px 20px 14px; color: #fff; display: flex; align-items: center; gap: 12px; }
+  .avatar {
+    width: 46px; height: 46px; border-radius: 12px; background: rgba(255,255,255,.25);
+    display: grid; place-items: center; font-size: 1.5rem; flex-shrink: 0;
+  }
+  .card-top small { opacity: .9; display: block; }
+  .card-top strong { font-size: 1.02rem; }
+  .card-body { padding: 18px 20px; flex: 1; display: flex; flex-direction: column; gap: 10px; }
+  .card-body h3 { font-size: 1.15rem; line-height: 1.3; }
+  .card-body p { color: var(--muted); font-size: .94rem; }
+  .tags { display: flex; flex-wrap: wrap; gap: 6px; }
+  .tag { background: #f1ebff; color: var(--purple-dark); padding: 3px 10px; border-radius: 999px; font-size: .78rem; font-weight: 600; }
+  .tag.urgent { background: #ffe4e6; color: #be123c; }
+  .tag.cause { background: #ccfbf1; color: #0f766e; }
+  .meta { display: flex; justify-content: space-between; color: var(--muted); font-size: .85rem; margin-top: auto; }
+  .card-foot {
+    padding: 14px 20px; border-top: 1px solid var(--border);
+    display: flex; justify-content: space-between; align-items: center; gap: 10px;
+  }
+  .helpers { font-size: .85rem; color: var(--muted); }
+  .helpers b { color: var(--teal); }
+  .empty { text-align: center; padding: 50px 10px; color: var(--muted); }
+  .empty .big { font-size: 3rem; }
+
+  /* Forms */
+  .form-card {
+    background: var(--card); border: 1px solid var(--border); border-radius: var(--radius);
+    padding: 28px; box-shadow: var(--shadow);
+  }
+  .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .form-grid .full { grid-column: 1 / -1; }
+  label { display: block; font-weight: 600; font-size: .9rem; margin-bottom: 5px; }
+  .skills-pick { display: flex; flex-wrap: wrap; gap: 8px; }
+  .hint { color: var(--muted); font-size: .82rem; margin-top: 4px; }
+  .error { color: #be123c; font-size: .85rem; margin-top: 4px; min-height: 1em; }
+
+  /* My offers */
+  .offer {
+    background: var(--card); border: 1px solid var(--border); border-left: 5px solid var(--teal);
+    border-radius: 12px; padding: 14px 18px; margin-bottom: 12px;
+    display: flex; justify-content: space-between; gap: 14px; flex-wrap: wrap;
+  }
+  .offer h4 { margin-bottom: 2px; }
+  .offer p { color: var(--muted); font-size: .9rem; }
+
+  /* Modal */
+  .overlay {
+    position: fixed; inset: 0; background: rgba(20, 10, 40, .6); z-index: 100;
+    display: none; align-items: center; justify-content: center; padding: 16px;
+  }
+  .overlay.open { display: flex; }
+  .modal {
+    background: #fff; border-radius: 20px; width: 100%; max-width: 640px; max-height: 92vh;
+    overflow: auto; animation: pop .2s ease-out;
+  }
+  @keyframes pop { from { transform: scale(.95); opacity: 0; } to { transform: none; opacity: 1; } }
+  .modal-head { padding: 22px 26px; color: #fff; position: relative; }
+  .modal-head h2 { font-size: 1.4rem; margin-top: 6px; padding-right: 30px; }
+  .close {
+    position: absolute; right: 16px; top: 14px; background: rgba(255,255,255,.25); color: #fff;
+    border: 0; width: 34px; height: 34px; border-radius: 50%; font-size: 1.2rem;
+  }
+  .modal-body { padding: 24px 26px 28px; }
+  .modal-body h4 { margin: 18px 0 6px; color: var(--purple-dark); }
+  .modal-body ul { margin-left: 20px; color: var(--muted); }
+  .help-form { margin-top: 22px; padding-top: 20px; border-top: 2px dashed var(--border); }
+  .help-form .form-grid { margin-bottom: 14px; }
+
+  /* Toast */
+  .toast {
+    position: fixed; bottom: 24px; left: 50%; transform: translate(-50%, 120px);
+    background: var(--text); color: #fff; padding: 14px 24px; border-radius: 12px;
+    z-index: 200; transition: transform .3s; max-width: 90vw; text-align: center;
+  }
+  .toast.show { transform: translate(-50%, 0); }
+
+  footer { margin-top: 70px; background: var(--purple-dark); color: #d8ccf5; padding: 34px 0; text-align: center; font-size: .92rem; }
+
+  @media (max-width: 640px) {
+    nav a { margin-left: 12px; font-size: .9rem; }
+    .form-grid { grid-template-columns: 1fr; }
+    .hero .btn + .btn { margin: 10px 0 0; }
+  }
+  @media (prefers-reduced-motion: reduce) { * { animation: none !important; transition: none !important; } }
+</style>
+</head>
+<body>
+
+<!-- ---------- 2. HTML ---------- -->
+<header class="nav">
+  <div class="container nav-inner">
+    <a href="#top" class="logo">Code<span>For</span>Good</a>
+    <nav aria-label="Main">
+      <a href="#projects">Projects</a>
+      <a href="#post">Post a Project</a>
+      <a href="#offers">My Offers</a>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+  <!-- Hero -->
+  <div class="hero">
+    <div class="container">
+      <span class="eyebrow">💜 Built for the IKU Womxn in STEM Hackathon</span>
+      <h1>Your tech skills can change a charity's year.</h1>
+      <p>Charities share the digital projects they can't afford to build. Students, companies and professionals with the right skills step up to help.</p>
+      <a href="#projects" class="btn btn-light">Find a project to help</a>
+      <a href="#post" class="btn btn-outline" style="border-color:#fff;color:#fff">I'm a charity</a>
+    </div>
+  </div>
+
+  <!-- Stats (numbers filled in by JavaScript) -->
+  <div class="stats">
+    <div class="container stats-grid" aria-live="polite">
+      <div class="stat"><strong id="statCharities">0</strong><span>Charities</span></div>
+      <div class="stat"><strong id="statProjects">0</strong><span>Open projects</span></div>
+      <div class="stat"><strong id="statHours">0</strong><span>Volunteer hours needed</span></div>
+      <div class="stat"><strong id="statOffers">0</strong><span>Offers of help</span></div>
+    </div>
+  </div>
+
+  <!-- How it works -->
+  <section>
+    <div class="container">
+      <div class="section-head"><h2>How it works</h2></div>
+      <div class="steps">
+        <div class="step"><div class="num">1</div><h3>Charities post a need</h3><p>A website, a data dashboard, an app, a logo. Describe the project and the skills required.</p></div>
+        <div class="step"><div class="num">2</div><h3>Skilled people browse</h3><p>Filter by cause, skill, time commitment and urgency to find the right match.</p></div>
+        <div class="step"><div class="num">3</div><h3>Offer your help</h3><p>Students, teams at companies, or individuals send a short message with their offer.</p></div>
+        <div class="step"><div class="num">4</div><h3>Build something good</h3><p>The charity gets in touch, you agree the plan, and your work makes a real impact.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Projects -->
+  <section id="projects">
+    <div class="container">
+      <div class="section-head">
+        <h2>Open projects</h2>
+        <p>Pick a project that matches your skills. Every hour you give is an hour a charity can spend on its mission.</p>
+      </div>
+
+      <div class="filters">
+        <div class="filter-row">
+          <input id="search" type="search" placeholder="🔍 Search projects or charities…" aria-label="Search projects">
+          <select id="causeFilter" aria-label="Filter by cause"></select>
+          <select id="effortFilter" aria-label="Filter by time commitment">
+            <option value="">Any time commitment</option>
+            <option value="small">Small (up to 20 hrs)</option>
+            <option value="medium">Medium (21–60 hrs)</option>
+            <option value="large">Large (60+ hrs)</option>
+          </select>
+          <select id="helperFilter" aria-label="Filter by who can help">
+            <option value="">Anyone can help</option>
+            <option value="Student">Good for students</option>
+            <option value="Company">Good for company teams</option>
+            <option value="Individual">Good for individuals</option>
+          </select>
+        </div>
+        <div class="chips" id="skillChips" role="group" aria-label="Filter by skill"></div>
+      </div>
+
+      <div class="result-count" id="resultCount" aria-live="polite"></div>
+      <div class="grid" id="projectGrid"></div>
+    </div>
+  </section>
+
+  <!-- Post a project -->
+  <section id="post">
+    <div class="container">
+      <div class="section-head">
+        <h2>Are you a charity? Post a project</h2>
+        <p>Tell volunteers what you need. It appears in the list above straight away.</p>
+      </div>
+      <form class="form-card" id="postForm" novalidate>
+        <div class="form-grid">
+          <div>
+            <label for="pCharity">Charity name *</label>
+            <input id="pCharity" required maxlength="60" placeholder="e.g. Green Streets Trust">
+            <div class="error" data-for="pCharity"></div>
+          </div>
+          <div>
+            <label for="pTitle">Project title *</label>
+            <input id="pTitle" required maxlength="80" placeholder="e.g. Volunteer sign-up website">
+            <div class="error" data-for="pTitle"></div>
+          </div>
+          <div>
+            <label for="pCause">Cause *</label>
+            <select id="pCause" required></select>
+          </div>
+          <div>
+            <label for="pHours">Estimated hours *</label>
+            <input id="pHours" type="number" min="1" max="500" required placeholder="e.g. 40">
+            <div class="error" data-for="pHours"></div>
+          </div>
+          <div class="full">
+            <label for="pDesc">What do you need? *</label>
+            <textarea id="pDesc" rows="4" required maxlength="500" placeholder="Describe the problem and what a finished project looks like."></textarea>
+            <div class="error" data-for="pDesc"></div>
+          </div>
+          <div class="full">
+            <label>Skills needed * <span class="hint">(pick at least one)</span></label>
+            <div class="skills-pick chips" id="pSkills"></div>
+            <div class="error" data-for="pSkills"></div>
+          </div>
+          <div>
+            <label for="pEmail">Contact email *</label>
+            <input id="pEmail" type="email" required placeholder="hello@yourcharity.org">
+            <div class="error" data-for="pEmail"></div>
+          </div>
+          <div>
+            <label for="pUrgency">Urgency</label>
+            <select id="pUrgency">
+              <option value="normal">Flexible timing</option>
+              <option value="urgent">Urgent (needed within a month)</option>
+            </select>
+          </div>
+        </div>
+        <button class="btn btn-primary" type="submit" style="margin-top:20px">Publish project</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- My offers -->
+  <section id="offers">
+    <div class="container">
+      <div class="section-head">
+        <h2>My offers of help</h2>
+        <p>Offers you have sent from this browser. In a real version, charities would receive these by email.</p>
+      </div>
+      <div id="offerList"></div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="container">
+    Made with 💜 at the IKU Womxn in STEM Hackathon. All charities shown are fictional examples.
+    <br><button class="btn btn-sm btn-outline" id="resetBtn" style="margin-top:14px;border-color:#d8ccf5;color:#d8ccf5">Reset demo data</button>
+  </div>
+</footer>
+
+<!-- Modal for project details and the offer-help form -->
+<div class="overlay" id="overlay" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+  <div class="modal" id="modal"></div>
+</div>
+<div class="toast" id="toast" role="status"></div>
+
+<!-- ---------- 3. JAVASCRIPT ---------- -->
+<script>
+"use strict";
+
+/* ===== Constants ===== */
+const CAUSES = {
+  "Environment":  { emoji: "🌱", color: "#15803d" },
+  "Education":    { emoji: "📚", color: "#2563eb" },
+  "Health":       { emoji: "🩺", color: "#dc2626" },
+  "Homelessness": { emoji: "🏠", color: "#c2410c" },
+  "Animals":      { emoji: "🐾", color: "#a16207" },
+  "Arts":         { emoji: "🎨", color: "#9333ea" },
+  "Community":    { emoji: "🤝", color: "#0d9488" }
+};
+const SKILLS = [
+  "Web Development", "UI/UX Design", "Data Analysis", "Mobile Apps",
+  "Cybersecurity", "Cloud/IT Support", "Machine Learning",
+  "Digital Marketing", "Databases", "Content Writing"
+];
+const STORAGE_PROJECTS = "cfg_projects_v1";
+const STORAGE_OFFERS = "cfg_offers_v1";
+
+/* ===== Starter data (fictional charities) ===== */
+const SEED_PROJECTS = [
+  {
+    id: 1, charity: "Green Streets Trust", cause: "Environment",
+    title: "Volunteer sign-up website", hours: 40, urgency: "normal",
+    skills: ["Web Development", "UI/UX Design"], helperTypes: ["Student", "Individual"],
+    email: "hello@greenstreets.example",
+    desc: "We run weekly litter picks and tree-planting days, but sign-ups happen over WhatsApp. We need a simple website where people can see events, register and get a reminder.",
+    deliverables: ["Event list page with a sign-up form", "Admin page to view who signed up", "Mobile-friendly design that matches our logo"]
+  },
+  {
+    id: 2, charity: "Open Doors Shelter", cause: "Homelessness",
+    title: "Bed availability dashboard", hours: 60, urgency: "urgent",
+    skills: ["Data Analysis", "Databases", "Web Development"], helperTypes: ["Company", "Student"],
+    email: "tech@opendoors.example",
+    desc: "Staff track beds in a paper notebook. We need a live dashboard showing free beds across our three sites so referrals can be made quickly.",
+    deliverables: ["Simple database of sites and beds", "Dashboard showing live availability", "A short staff guide"]
+  },
+  {
+    id: 3, charity: "Little Learners Club", cause: "Education",
+    title: "Reading-progress app for volunteers", hours: 80, urgency: "normal",
+    skills: ["Mobile Apps", "UI/UX Design"], helperTypes: ["Company", "Student"],
+    email: "hi@littlelearners.example",
+    desc: "Volunteer reading buddies record each child's progress on paper. A friendly app would let them log books read and celebrate milestones.",
+    deliverables: ["Clickable prototype first", "Working app for Android or web", "Privacy-safe handling of children's data"]
+  },
+  {
+    id: 4, charity: "Paws & Hearts Rescue", cause: "Animals",
+    title: "Online adoption gallery", hours: 25, urgency: "normal",
+    skills: ["Web Development", "Content Writing"], helperTypes: ["Student", "Individual"],
+    email: "adopt@pawshearts.example",
+    desc: "Our adoptable animals are listed in a spreadsheet. We would love a searchable gallery with photos, filters by species and age, and an enquiry button.",
+    deliverables: ["Searchable gallery page", "Enquiry form emailing our team", "Guide so staff can add new animals"]
+  },
+  {
+    id: 5, charity: "MindWell Community", cause: "Health",
+    title: "Security review of our donor database", hours: 30, urgency: "urgent",
+    skills: ["Cybersecurity", "Cloud/IT Support", "Databases"], helperTypes: ["Company"],
+    email: "it@mindwell.example",
+    desc: "We store supporter details in a cloud spreadsheet and an old CRM. We need a security check, a plan to fix weak spots and staff training notes.",
+    deliverables: ["Short risk report in plain English", "Prioritised fix list", "One-hour staff awareness session"]
+  },
+  {
+    id: 6, charity: "Riverside Arts Collective", cause: "Arts",
+    title: "Social media campaign for our winter show", hours: 15, urgency: "normal",
+    skills: ["Digital Marketing", "Content Writing"], helperTypes: ["Student", "Individual"],
+    email: "events@riversidearts.example",
+    desc: "We need a four-week social media plan, post templates and a few short videos to fill seats for our winter youth theatre show.",
+    deliverables: ["4-week content calendar", "10 post templates", "Basic reporting on reach"]
+  },
+  {
+    id: 7, charity: "Clean Water Now", cause: "Environment",
+    title: "Predict pump failures with machine learning", hours: 100, urgency: "normal",
+    skills: ["Machine Learning", "Data Analysis"], helperTypes: ["Company", "Student"],
+    email: "data@cleanwater.example",
+    desc: "We have five years of sensor readings from water pumps. We'd like a model that flags pumps likely to fail so engineers can fix them early.",
+    deliverables: ["Cleaned dataset", "Prototype model with accuracy report", "Notebook our team can re-run"]
+  },
+  {
+    id: 8, charity: "Neighbours United", cause: "Community",
+    title: "Refresh our out-of-date website", hours: 35, urgency: "normal",
+    skills: ["Web Development", "UI/UX Design", "Content Writing"], helperTypes: ["Student", "Company", "Individual"],
+    email: "team@neighboursunited.example",
+    desc: "Our site was built in 2012 and doesn't work on phones. We want a clean, accessible redesign that explains our services and takes donations.",
+    deliverables: ["New homepage and 4 inner pages", "Accessible (WCAG AA) design", "Donation button integration"]
+  },
+  {
+    id: 9, charity: "Bright Futures Health", cause: "Health",
+    title: "Appointment reminder text-message system", hours: 45, urgency: "urgent",
+    skills: ["Cloud/IT Support", "Databases", "Web Development"], helperTypes: ["Company", "Student"],
+    email: "clinic@brightfutures.example",
+    desc: "Missed appointments cost our free clinic dozens of hours each month. We need an automated reminder system that sends texts from our booking list.",
+    deliverables: ["Reminder workflow", "Simple opt-out handling", "Documentation for clinic staff"]
+  }
+];
+
+/* ===== State (data the page remembers) ===== */
+let projects = load(STORAGE_PROJECTS, SEED_PROJECTS);
+let offers = load(STORAGE_OFFERS, []);
+const filters = { search: "", cause: "", effort: "", helper: "", skills: new Set() };
+const postSkills = new Set();
+
+/* ===== Small helper functions ===== */
+const $ = (id) => document.getElementById(id);
+
+// Read from localStorage; fall back to a default if empty or broken
+function load(key, fallback) {
+  try { const raw = localStorage.getItem(key); return raw ? JSON.parse(raw) : fallback; }
+  catch (e) { return fallback; }
+}
+function save(key, value) {
+  try { localStorage.setItem(key, JSON.stringify(value)); } catch (e) { /* storage may be blocked */ }
+}
+// Escape text so user input can never inject HTML into the page
+function esc(str) {
+  const div = document.createElement("div");
+  div.textContent = String(str);
+  return div.innerHTML;
+}
+function effortOf(hours) { return hours <= 20 ? "small" : hours <= 60 ? "medium" : "large"; }
+function offersFor(projectId) { return offers.filter(o => o.projectId === projectId).length; }
+function causeOf(name) { return CAUSES[name] || { emoji: "💜", color: "#6d28d9" }; }
+
+let toastTimer;
+function toast(message) {
+  const t = $("toast");
+  t.textContent = message;
+  t.classList.add("show");
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => t.classList.remove("show"), 3200);
+}
+
+/* ===== Build the filter controls ===== */
+function setupFilters() {
+  $("causeFilter").innerHTML = '<option value="">All causes</option>' +
+    Object.keys(CAUSES).map(c => `<option value="${esc(c)}">${CAUSES[c].emoji} ${esc(c)}</option>`).join("");
+
+  $("pCause").innerHTML = Object.keys(CAUSES)
+    .map(c => `<option value="${esc(c)}">${CAUSES[c].emoji} ${esc(c)}</option>`).join("");
+
+  $("skillChips").innerHTML = SKILLS
+    .map(s => `<button type="button" class="chip" data-skill="${esc(s)}" aria-pressed="false">${esc(s)}</button>`).join("");
+
+  $("pSkills").innerHTML = SKILLS
+    .map(s => `<button type="button" class="chip" data-postskill="${esc(s)}" aria-pressed="false">${esc(s)}</button>`).join("");
+}
+
+/* ===== Filtering ===== */
+function filteredProjects() {
+  const q = filters.search.trim().toLowerCase();
+  return projects.filter(p => {
+    if (q && !(p.title + " " + p.charity + " " + p.desc).toLowerCase().includes(q)) return false;
+    if (filters.cause && p.cause !== filters.cause) return false;
+    if (filters.effort && effortOf(p.hours) !== filters.effort) return false;
+    if (filters.helper && !(p.helperTypes || []).includes(filters.helper)) return false;
+    // Project must need at least one of the selected skills
+    if (filters.skills.size && !p.skills.some(s => filters.skills.has(s))) return false;
+    return true;
+  });
+}
+
+/* ===== Rendering ===== */
+function renderStats() {
+  $("statCharities").textContent = new Set(projects.map(p => p.charity)).size;
+  $("statProjects").textContent = projects.length;
+  $("statHours").textContent = projects.reduce((sum, p) => sum + Number(p.hours), 0);
+  $("statOffers").textContent = offers.length;
+}
+
+function renderProjects() {
+  const list = filteredProjects();
+  $("resultCount").textContent = `${list.length} project${list.length === 1 ? "" : "s"} found`;
+
+  if (!list.length) {
+    $("projectGrid").innerHTML =
+      '<div class="empty" style="grid-column:1/-1"><div class="big">🔎</div><p>No projects match those filters. Try clearing some.</p></div>';
+    return;
+  }
+
+  $("projectGrid").innerHTML = list.map(p => {
+    const c = causeOf(p.cause);
+    const n = offersFor(p.id);
+    return `
+      <article class="card">
+        <div class="card-top" style="background:${c.color}">
+          <div class="avatar" aria-hidden="true">${c.emoji}</div>
+          <div><small>${esc(p.cause)}</small><strong>${esc(p.charity)}</strong></div>
+        </div>
+        <div class="card-body">
+          <h3>${esc(p.title)}</h3>
+          <p>${esc(p.desc.length > 130 ? p.desc.slice(0, 130) + "…" : p.desc)}</p>
+          <div class="tags">
+            ${p.urgency === "urgent" ? '<span class="tag urgent">⚡ Urgent</span>' : ""}
+            ${p.skills.map(s => `<span class="tag">${esc(s)}</span>`).join("")}
+          </div>
+          <div class="meta"><span>⏱ ~${esc(p.hours)} hours</span><span>${esc(effortOf(p.hours))} project</span></div>
+        </div>
+        <div class="card-foot">
+          <span class="helpers"><b>${n}</b> offer${n === 1 ? "" : "s"} so far</span>
+          <button class="btn btn-primary btn-sm" data-open="${p.id}">View &amp; help</button>
+        </div>
+      </article>`;
+  }).join("");
+}
+
+function renderOffers() {
+  if (!offers.length) {
+    $("offerList").innerHTML =
+      '<div class="empty"><div class="big">💌</div><p>You haven\'t offered help yet. Browse the projects above and pick one!</p></div>';
+    return;
+  }
+  $("offerList").innerHTML = offers.slice().reverse().map(o => {
+    const p = projects.find(x => x.id === o.projectId);
+    return `
+      <div class="offer">
+        <div>
+          <h4>${esc(p ? p.title : "(project removed)")}</h4>
+          <p>${esc(p ? p.charity : "")} · You offered as: <b>${esc(o.type)}</b>${o.org ? " (" + esc(o.org) + ")" : ""}</p>
+          <p>“${esc(o.message)}”</p>
+        </div>
+        <div><span class="tag cause">Sent ${esc(o.date)}</span></div>
+      </div>`;
+  }).join("");
+}
+
+function renderAll() { renderStats(); renderProjects(); renderOffers(); }
+
+/* ===== Modal (project details + offer form) ===== */
+let lastFocus = null;
+
+function openModal(id) {
+  const p = projects.find(x => x.id === id);
+  if (!p) return;
+  const c = causeOf(p.cause);
+  lastFocus = document.activeElement;
+
+  const deliverables = (p.deliverables && p.deliverables.length)
+    ? `<h4>What a finished project looks like</h4><ul>${p.deliverables.map(d => `<li>${esc(d)}</li>`).join("")}</ul>` : "";
+
+  $("modal").innerHTML = `
+    <div class="modal-head" style="background:${c.color}">
+      <button class="close" data-close aria-label="Close">✕</button>
+      <small>${c.emoji} ${esc(p.cause)} · ${esc(p.charity)}</small>
+      <h2 id="modalTitle">${esc(p.title)}</h2>
+    </div>
+    <div class="modal-body">
+      <div class="tags">
+        ${p.urgency === "urgent" ? '<span class="tag urgent">⚡ Urgent</span>' : ""}
+        <span class="tag cause">⏱ ~${esc(p.hours)} hours</span>
+        ${p.skills.map(s => `<span class="tag">${esc(s)}</span>`).join("")}
+      </div>
+      <h4>The challenge</h4>
+      <p style="color:var(--muted)">${esc(p.desc)}</p>
+      ${deliverables}
+      <h4>Who can help</h4>
+      <p style="color:var(--muted)">${esc((p.helperTypes || ["Anyone"]).join(", "))}</p>
+
+      <form class="help-form" id="helpForm" data-project="${p.id}" novalidate>
+        <h3 style="color:var(--purple-dark);margin-bottom:12px">💜 Offer your help</h3>
+        <div class="form-grid">
+          <div>
+            <label for="hName">Your name *</label>
+            <input id="hName" maxlength="60" required>
+            <div class="error" data-for="hName"></div>
+          </div>
+          <div>
+            <label for="hEmail">Your email *</label>
+            <input id="hEmail" type="email" required>
+            <div class="error" data-for="hEmail"></div>
+          </div>
+          <div>
+            <label for="hType">I'm helping as a…</label>
+            <select id="hType">
+              <option>Student</option><option>Company</option><option>Individual</option>
+            </select>
+          </div>
+          <div>
+            <label for="hOrg">University / Company</label>
+            <input id="hOrg" maxlength="60" placeholder="optional">
+          </div>
+          <div class="full">
+            <label for="hMsg">How can you help? *</label>
+            <textarea id="hMsg" rows="3" maxlength="400" required placeholder="Tell them about your skills and how many hours you can give."></textarea>
+            <div class="error" data-for="hMsg"></div>
+          </div>
+        </div>
+        <button class="btn btn-primary" type="submit">Send offer</button>
+      </form>
+    </div>`;
+
+  $("overlay").classList.add("open");
+  document.body.style.overflow = "hidden";
+  $("modal").querySelector(".close").focus();
+}
+
+function closeModal() {
+  $("overlay").classList.remove("open");
+  document.body.style.overflow = "";
+  if (lastFocus) lastFocus.focus();
+}
+
+/* ===== Form validation helpers ===== */
+function setError(id, message) {
+  const el = document.querySelector(`.error[data-for="${id}"]`);
+  if (el) el.textContent = message || "";
+}
+const emailOk = (v) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v);
+
+function submitOffer(form) {
+  const name = $("hName").value.trim();
+  const email = $("hEmail").value.trim();
+  const message = $("hMsg").value.trim();
+  let ok = true;
+
+  setError("hName", name ? "" : "Please enter your name."); if (!name) ok = false;
+  setError("hEmail", emailOk(email) ? "" : "Please enter a valid email."); if (!emailOk(email)) ok = false;
+  setError("hMsg", message.length >= 10 ? "" : "Please write at least 10 characters."); if (message.length < 10) ok = false;
+  if (!ok) return;
+
+  offers.push({
+    projectId: Number(form.dataset.project),
+    name, email, message,
+    type: $("hType").value,
+    org: $("hOrg").value.trim(),
+    date: new Date().toLocaleDateString("en-GB")
+  });
+  save(STORAGE_OFFERS, offers);
+  closeModal();
+  renderAll();
+  toast("🎉 Offer sent! The charity will be in touch.");
+  $("offers").scrollIntoView();
+}
+
+function submitProject(e) {
+  e.preventDefault();
+  const charity = $("pCharity").value.trim();
+  const title = $("pTitle").value.trim();
+  const desc = $("pDesc").value.trim();
+  const email = $("pEmail").value.trim();
+  const hours = Number($("pHours").value);
+  let ok = true;
+
+  const check = (id, valid, msg) => { setError(id, valid ? "" : msg); if (!valid) ok = false; };
+  check("pCharity", charity.length >= 2, "Please enter your charity name.");
+  check("pTitle", title.length >= 4, "Please give the project a title.");
+  check("pHours", hours >= 1 && hours <= 500, "Enter hours between 1 and 500.");
+  check("pDesc", desc.length >= 20, "Please describe the project (20+ characters).");
+  check("pSkills", postSkills.size > 0, "Pick at least one skill.");
+  check("pEmail", emailOk(email), "Please enter a valid email.");
+  if (!ok) return;
+
+  const newId = projects.reduce((max, p) => Math.max(max, p.id), 0) + 1;
+  projects.unshift({
+    id: newId, charity, title, desc, email, hours,
+    cause: $("pCause").value,
+    urgency: $("pUrgency").value,
+    skills: [...postSkills],
+    helperTypes: ["Student", "Company", "Individual"],
+    deliverables: []
+  });
+  save(STORAGE_PROJECTS, projects);
+
+  e.target.reset();
+  postSkills.clear();
+  document.querySelectorAll("[data-postskill]").forEach(b => { b.classList.remove("active"); b.setAttribute("aria-pressed", "false"); });
+  renderAll();
+  toast("✅ Project published! Volunteers can now see it.");
+  $("projects").scrollIntoView();
+}
+
+/* ===== Event listeners ===== */
+function toggleChip(btn, set, value) {
+  if (set.has(value)) set.delete(value); else set.add(value);
+  const active = set.has(value);
+  btn.classList.toggle("active", active);
+  btn.setAttribute("aria-pressed", active);
+}
+
+function wireEvents() {
+  $("search").addEventListener("input", e => { filters.search = e.target.value; renderProjects(); });
+  $("causeFilter").addEventListener("change", e => { filters.cause = e.target.value; renderProjects(); });
+  $("effortFilter").addEventListener("change", e => { filters.effort = e.target.value; renderProjects(); });
+  $("helperFilter").addEventListener("change", e => { filters.helper = e.target.value; renderProjects(); });
+
+  $("skillChips").addEventListener("click", e => {
+    const btn = e.target.closest("[data-skill]");
+    if (!btn) return;
+    toggleChip(btn, filters.skills, btn.dataset.skill);
+    renderProjects();
+  });
+  $("pSkills").addEventListener("click", e => {
+    const btn = e.target.closest("[data-postskill]");
+    if (btn) toggleChip(btn, postSkills, btn.dataset.postskill);
+  });
+
+  $("projectGrid").addEventListener("click", e => {
+    const btn = e.target.closest("[data-open]");
+    if (btn) openModal(Number(btn.dataset.open));
+  });
+
+  // Close modal: X button, click on dark background, or Escape key
+  $("overlay").addEventListener("click", e => {
+    if (e.target === $("overlay") || e.target.closest("[data-close]")) closeModal();
+  });
+  document.addEventListener("keydown", e => {
+    if (e.key === "Escape" && $("overlay").classList.contains("open")) closeModal();
+  });
+
+  // The help form is created dynamically, so we listen on the modal itself
+  $("modal").addEventListener("submit", e => {
+    if (e.target.id === "helpForm") { e.preventDefault(); submitOffer(e.target); }
+  });
+  $("postForm").addEventListener("submit", submitProject);
+
+  $("resetBtn").addEventListener("click", () => {
+    if (!confirm("Reset all projects and offers back to the demo data?")) return;
+    projects = JSON.parse(JSON.stringify(SEED_PROJECTS));
+    offers = [];
+    save(STORAGE_PROJECTS, projects);
+    save(STORAGE_OFFERS, offers);
+    renderAll();
+    toast("Demo data restored.");
+  });
+}
+
+/* ===== Start the app ===== */
+setupFilters();
+wireEvents();
+renderAll();
+</script>
+</body>
+</html>
