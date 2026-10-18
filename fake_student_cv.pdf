@@ -1,0 +1,111 @@
+%PDF-1.4
+1 0 obj
+<< /Type /Catalog /Pages 2 0 R >>
+endobj
+2 0 obj
+<< /Type /Pages /Kids [3 0 R] /Count 1 >>
+endobj
+3 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 842] /Resources << /Font << /F1 4 0 R >> >> /Contents 5 0 R >>
+endobj
+4 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica >>
+endobj
+5 0 obj
+<< /Length 1657 >>
+stream
+BT
+50 790 Td
+/F1 18 Tf
+(Fictional Student CV - Demo Only) Tj
+0 -25 Td
+/F1 14 Tf
+(Alex Example) Tj
+0 -25 Td
+/F1 10 Tf
+(alex.example@example.test | London, UK | Portfolio: example.test/alex) Tj
+0 -25 Td
+/F1 10 Tf
+() Tj
+0 -25 Td
+/F1 12 Tf
+(PROFILE) Tj
+0 -25 Td
+/F1 10 Tf
+(Computing student interested in accessible community technology and data.) Tj
+0 -25 Td
+/F1 10 Tf
+(Enjoys collaborative projects that make local services easier to use.) Tj
+0 -25 Td
+/F1 10 Tf
+() Tj
+0 -25 Td
+/F1 12 Tf
+(EDUCATION) Tj
+0 -25 Td
+/F1 10 Tf
+(BSc Computing, Example University | 2024-2027 \(fictional\)) Tj
+0 -25 Td
+/F1 10 Tf
+(Relevant study: web development, databases, human-computer interaction.) Tj
+0 -25 Td
+/F1 10 Tf
+() Tj
+0 -25 Td
+/F1 12 Tf
+(PROJECT EXPERIENCE) Tj
+0 -25 Td
+/F1 10 Tf
+(Student timetable web app | Built responsive pages with HTML, CSS and JavaScript.) Tj
+0 -25 Td
+/F1 10 Tf
+(Added accessible labels, clear navigation and a searchable weekly schedule.) Tj
+0 -25 Td
+/F1 10 Tf
+(Community data project | Cleaned a small sample dataset with Python and SQL.) Tj
+0 -25 Td
+/F1 10 Tf
+(Created a simple directory prototype to help people find local support.) Tj
+0 -25 Td
+/F1 10 Tf
+() Tj
+0 -25 Td
+/F1 12 Tf
+(SKILLS) Tj
+0 -25 Td
+/F1 10 Tf
+(HTML, CSS, JavaScript, Python, SQL, responsive design, accessibility testing,) Tj
+0 -25 Td
+/F1 10 Tf
+(research, teamwork, writing and visual communication.) Tj
+0 -25 Td
+/F1 10 Tf
+() Tj
+0 -25 Td
+/F1 12 Tf
+(INTERESTS) Tj
+0 -25 Td
+/F1 10 Tf
+(Accessible design, community services, education and climate action.) Tj
+0 -25 Td
+/F1 10 Tf
+() Tj
+0 -25 Td
+/F1 9 Tf
+(All names, education and experience in this document are fictional.) Tj
+ET
+endstream
+endobj
+xref
+0 6
+0000000000 65535 f 
+0000000009 00000 n 
+0000000058 00000 n 
+0000000115 00000 n 
+0000000241 00000 n 
+0000000311 00000 n 
+trailer
+<< /Size 6 /Root 1 0 R >>
+startxref
+2020
+%%EOF

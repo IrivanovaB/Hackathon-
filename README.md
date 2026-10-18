@@ -2,26 +2,6 @@
 
 ## CV project shortlist API
 
-The student browse page calls `POST /api/project-matches` when a student selects **Find CV matches**. The endpoint should be served by the app's backend (same origin, or with suitable CORS configuration); the static HTML alone does not provide AI matching.
+On the student browse page, select **Upload CV and find matches** and choose a PDF, DOC, or DOCX file (up to 6 MB). The page sends the selected file as the `file` field in a `multipart/form-data` `POST` request to `http://127.0.0.1:8000/api/scan`, then displays the candidate summary and returned project shortlist. The FastAPI service in `server.py` must be running locally, and its CORS settings must allow the page's origin.
 
-The request is `multipart/form-data` with these fields:
-
-- `cv`: the student's uploaded PDF, DOC, or DOCX file
-- `profile`: JSON text containing `year`, `location`, `values`, `interests`, and `experience`
-- `projects`: JSON text array of currently available projects. Each item contains `id`, `title`, `description`, `impact`, `skills`, `sector`, `location`, `hours`, `format`, and `requestedItem`
-
-Return JSON in this format:
-
-```json
-{
-	"matches": [
-		{
-			"projectId": 4,
-			"score": 92,
-			"reason": "Your experience with data and accessible web design fits this project."
-		}
-	]
-}
-```
-
-Only return project IDs from the request, scores from 0 to 100, and short, evidence-based reasons. The client ignores unknown project IDs and displays at most five matches. Keep Gemini or other provider API keys on the backend, validate uploaded files and request sizes there, and avoid logging CV contents. The demo's sample CVs are filenames only; upload a real CV from the student profile to try matching.
+The API response includes a `candidate_summary` string and a `shortlist` array. Each shortlist item includes `project_title`, `match_score`, `skill_alignment`, `experience_alignment`, `interest_fit`, and `summary_reason`. Keep Gemini or other provider API keys on the backend, validate uploaded files and request sizes there, and avoid logging CV contents.
