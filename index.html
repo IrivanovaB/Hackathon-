@@ -41,10 +41,20 @@ button,.btn{font:600 1rem Figtree;cursor:pointer}
 .roles{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;margin:20px 0 50px}
 .role{text-align:left;background:var(--card);color:var(--ink);border:1px solid var(--line);border-radius:12px;padding:20px;box-shadow:3px 4px 0 #c8e2dc;transition:transform .15s}
 .role:hover{transform:translate(-2px,-2px);box-shadow:5px 6px 0 #b6dacf}.role strong{font:800 1.5rem 'Bricolage Grotesque';display:block}.role span{color:var(--mut);font-size:.95rem}
-.role .role-index{display:inline-grid;place-items:center;width:34px;height:34px;margin-bottom:14px;border-radius:50%;background:#dcefeb;color:var(--green);font:800 .85rem Figtree}
 .panel{background:var(--card);border:2px solid var(--ink);border-radius:14px;padding:22px;margin:18px 0}
 .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:16px}
 .proj{background:var(--card);border:2px solid var(--ink);border-radius:12px;padding:18px;display:flex;flex-direction:column;gap:8px}
+.match-shortlist{background:linear-gradient(120deg,#e5f3f6,#eaf6ee);border:1px solid var(--line);border-radius:14px;padding:20px;margin:18px 0 24px}
+.match-heading{display:flex;align-items:center;justify-content:space-between;gap:18px;flex-wrap:wrap}
+.match-heading h3{margin:0 0 4px}.match-heading p{margin:0;color:var(--mut)}
+.match-results{display:grid;gap:10px;margin-top:16px}
+.match-result{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:14px 16px}
+.match-result-head{display:flex;align-items:flex-start;justify-content:space-between;gap:12px}
+.match-result h4{margin:0 0 4px;font-size:1rem}
+.match-score{flex:0 0 auto;background:#d9f0e5;color:#176344;border-radius:999px;padding:3px 9px;font-size:.8rem;font-weight:800}
+.match-result p{margin:8px 0 0;color:var(--mut);font-size:.92rem}
+.match-state{margin:14px 0 0;color:var(--mut)}
+.match-error{color:#7a1d10}
 .tag{display:inline-block;font-size:.8rem;font-weight:600;background:var(--vs);padding:2px 10px;border-radius:99px;margin:0 4px 4px 0}
 .tag.y{background:var(--sun);color:#14112b}.tag.g{background:#c9f2e0;color:#0b5238}.tag.r{background:#ffd9d3;color:#7a1d10}
 label{display:block;font-weight:600;margin:12px 0 4px}
@@ -57,8 +67,36 @@ textarea{min-height:80px}
 #toast{position:fixed;bottom:18px;left:50%;transform:translateX(-50%);background:var(--ink);color:var(--paper);padding:12px 20px;border-radius:10px;z-index:20;max-width:90vw;display:none}
 dialog{border:2px solid var(--ink);border-radius:14px;background:var(--card);color:var(--ink);max-width:520px;width:92vw}
 .item{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;align-items:center;padding:12px 0;border-top:1px solid var(--line)}
+.student-profile{background:var(--card);border:1px solid var(--line);border-radius:14px;overflow:hidden;margin:22px 0 40px;box-shadow:0 8px 24px rgba(24,52,58,.07)}
+.profile-cover{height:150px;background:linear-gradient(120deg,#cce8ef,#d5efdf);position:relative;overflow:hidden}
+.profile-cover:before{content:"";position:absolute;inset:0;background:linear-gradient(30deg,transparent 48%,rgba(24,122,155,.13) 49%,rgba(24,122,155,.13) 50%,transparent 51%),linear-gradient(150deg,transparent 48%,rgba(33,131,94,.13) 49%,rgba(33,131,94,.13) 50%,transparent 51%);background-size:76px 76px}
+.profile-head{position:relative;display:flex;align-items:flex-end;gap:20px;padding:0 28px;margin-top:-58px}
+.profile-photo{width:120px;height:120px;flex:0 0 120px;border:5px solid #fff;border-radius:50%;background:#dcefeb;color:var(--green);display:grid;place-items:center;overflow:hidden;font:800 2rem 'Bricolage Grotesque'}
+.profile-photo img{width:100%;height:100%;object-fit:cover}
+.profile-identity{padding-bottom:8px;min-width:0}
+.profile-identity h1{font-size:2rem;line-height:1.1;letter-spacing:0;margin:0 0 5px}
+.profile-identity p{margin:0;color:var(--mut)}
+.profile-badges{display:flex;flex-wrap:wrap;gap:7px;margin-top:9px}
+.profile-badges .tag{margin:0}
+.profile-layout{display:grid;grid-template-columns:minmax(0,1fr) 270px;gap:28px;padding:26px 28px 28px}
+.profile-section{padding:0 0 20px;margin-bottom:20px;border-bottom:1px solid var(--line)}
+.profile-section:last-child{margin:0;padding:0;border:0}
+.profile-section h2{font-size:1.1rem;margin:0 0 10px}
+.profile-section p{margin:0;color:var(--mut);white-space:pre-wrap}
+.profile-links{display:grid;gap:8px}
+.profile-links a,.profile-cv-link{display:flex;align-items:center;gap:8px;color:var(--blue);font-weight:700;text-decoration:none;overflow-wrap:anywhere}
+.profile-links a:hover,.profile-cv-link:hover{text-decoration:underline}
+.profile-cv{display:flex;align-items:flex-start;gap:10px;padding:12px;border:1px solid var(--line);border-radius:9px;background:#f4faf8}
+.profile-cv-icon{display:grid;place-items:center;width:34px;height:40px;flex:0 0 34px;border-radius:6px;background:#dcefeb;color:var(--green);font-size:.72rem;font-weight:800}
+.profile-cv p{margin:2px 0 0;color:var(--mut);font-size:.82rem;overflow-wrap:anywhere}
+.profile-editor{border-top:1px solid var(--line);padding:18px 28px 24px}
+.profile-editor summary{cursor:pointer;font-weight:800;color:var(--blue)}
+.profile-editor .row{margin-top:10px}
+.profile-editor .b{margin-top:14px}
+.profile-editor .mut{margin:8px 0 0}
+.profile-input-file{font-size:.88rem}
 footer{padding:30px 20px;text-align:center}
-@media(max-width:760px){.hero{grid-template-columns:1fr}.tix{height:290px}}
+@media(max-width:760px){.hero{grid-template-columns:1fr}.tix{height:290px}.profile-layout{grid-template-columns:1fr;gap:22px}.profile-cover{height:120px}.profile-head{padding:0 18px;gap:12px}.profile-photo{width:92px;height:92px;flex-basis:92px}.profile-identity h1{font-size:1.6rem}.profile-layout{padding:22px 18px}.profile-editor{padding:18px}}
 @media(prefers-reduced-motion:reduce){*{transition:none!important}}
 </style>
 </head>
@@ -73,21 +111,34 @@ const esc=s=>String(s??'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&g
 let _id=100;const nid=()=>++_id;
 const SECTORS=['Technology','Legal','Education','Health','Environment','Arts','Finance'];
 const TYPES={none:'Direct volunteering',shadow:'Shadowing',mentor:'Mentoring',both:'Shadowing + mentoring'};
+const MATCH_API_URL='/api/project-matches';
 const YEARS=['A-level Year 12','A-level Year 13','University Year 1','University Year 2','Beyond second year'];
 const FREE=/@(gmail|yahoo|hotmail|outlook|icloud|live|aol|proton(mail)?|me)\./i;
 const STU=/(\.ac\.[a-z]{2}|\.edu(\.[a-z]{2})?$|\.sch\.uk|school|college|academy|sixthform)/i;
 const dom=e=>e.split('@')[1]||'';
-const S={user:null,view:'home',role:null,mode:'up',pend:null,f:{q:'',sector:'',time:'',loc:''},
+const S={user:null,view:'home',role:null,mode:'up',pend:null,matchState:{loading:false,error:'',results:[]},f:{q:'',sector:'',time:'',loc:''},
 users:[
-{id:1,role:'student',email:'amara@kcl.ac.uk',pw:'demo',name:'Amara Okafor',loc:'London',year:'University Year 1',values:'Fairness, curiosity',interests:'web design, data, accessibility',projects:'Built a school timetable app',cv:'amara_cv.pdf',approved:true},
+{id:1,role:'student',email:'amara@kcl.ac.uk',pw:'demo',name:'Amara Okafor',loc:'London',year:'University Year 1',values:'Fairness, curiosity',interests:'web design, data, accessibility',projects:'Built a school timetable app',bio:'First-year computing student interested in accessible web design and using technology to make local services easier to find. I enjoy collaborating with community groups and learning from people with different perspectives.',linkedin:'https://www.linkedin.com/',github:'https://github.com/',portfolio:'https://example.com/amara',photo:'https://randomuser.me/api/portraits/women/44.jpg',cv:'amara_cv.pdf',approved:true},
 {id:2,role:'company',email:'lead@northline.com',pw:'demo',name:'Priya Shah',companyId:1,approved:true},
 {id:3,role:'employee',email:'jo@northline.com',pw:'demo',name:'Jo Bennett',companyId:1,loc:'London',approved:true},
-{id:4,role:'charity',email:'hello@greenroots.org.uk',pw:'demo',name:'Green Roots',loc:'Manchester',values:'Community, sustainability',charityNo:'1234567',approved:true}],
+{id:4,role:'charity',email:'hello@greenroots.org.uk',pw:'demo',name:'Green Roots',loc:'Manchester',values:'Community, sustainability',charityNo:'1234567',approved:true},
+{id:5,role:'student',email:'zara@ucl.ac.uk',pw:'demo',name:'Zara Ali',loc:'Bristol',year:'University Year 2',values:'Access, empathy',interests:'community research, illustration, education',projects:'Designed a reading tracker for a student society',bio:'Design student who loves turning complex information into friendly, useful experiences. I am keen to contribute creative skills to projects that help young people.',linkedin:'https://www.linkedin.com/',github:'https://github.com/',portfolio:'https://example.com/zara',photo:'https://randomuser.me/api/portraits/women/68.jpg',cv:'zara_ali_cv.pdf',approved:true},
+{id:6,role:'student',email:'leo@kcl.ac.uk',pw:'demo',name:'Leo Martins',loc:'London',year:'A-level Year 13',values:'Teamwork, inclusion',interests:'coding, photography, climate action',projects:'Made a recycling guide for my school',bio:'A-level student building confidence in front-end development. I like practical challenges, thoughtful teamwork, and projects that make a visible difference nearby.',linkedin:'https://www.linkedin.com/',github:'https://github.com/',portfolio:'https://example.com/leo',photo:'https://randomuser.me/api/portraits/men/32.jpg',cv:'leo_martins_cv.pdf',approved:true},
+{id:7,role:'charity',email:'team@bookbridge.example',pw:'demo',name:'BookBridge Collective',loc:'Bristol',approved:true},
+{id:8,role:'charity',email:'hello@neighbourhoodfood.example',pw:'demo',name:'Neighbourhood Food Network',loc:'London',approved:true},
+{id:9,role:'charity',email:'youth@brightsteps.example',pw:'demo',name:'Bright Steps Youth',loc:'Manchester',approved:true}],
 companies:[{id:1,name:'Northline Capital',loc:'London',sector:'Finance',desc:'Trading and technology firm with a volunteering programme.',domain:'northline.com',verified:true}],
 projects:[
 {id:1,charityId:4,title:'Volunteer sign-up website',what:'A simple responsive website where locals can sign up for garden days.',why:'Our paper sign-up sheets lose people. A site would double our volunteers.',skills:'HTML, CSS, JavaScript, design',timeline:'6 weeks',deadline:'2026-12-15',budget:'£0 (volunteer led)',type:'mentor',sector:'Technology',loc:'Manchester',hours:25,ask:'Link to any past web project',status:'live',employeeId:null},
-{id:2,charityId:4,title:'Leaflet design for open day',what:'Print-ready A5 leaflet.',why:'Reaches households without internet.',skills:'Graphic design',timeline:'2 weeks',deadline:'2026-11-20',budget:'£50 printing',type:'none',sector:'Arts',loc:'Manchester',hours:4,ask:'Portfolio or sketches',status:'live',employeeId:null}],
-apps:[]};
+{id:2,charityId:4,title:'Leaflet design for open day',what:'Print-ready A5 leaflet.',why:'Reaches households without internet.',skills:'Graphic design',timeline:'2 weeks',deadline:'2026-11-20',budget:'£50 printing',type:'none',sector:'Arts',loc:'Manchester',hours:4,ask:'Portfolio or sketches',status:'live',employeeId:null},
+{id:3,charityId:7,title:'Digital reading buddy toolkit',what:'Create a set of simple printable and web-friendly reading activities for volunteer tutors.',why:'Our volunteers need engaging materials they can adapt for different reading levels.',skills:'Education, writing, web design',timeline:'3 weeks',deadline:'2026-11-30',budget:'Volunteer led',type:'none',sector:'Education',loc:'Bristol',hours:12,ask:'A short note about your relevant skills',status:'live',employeeId:null},
+{id:4,charityId:8,title:'Map local food support',what:'Build a clear mobile-friendly directory of community fridges and food support sessions.',why:'Residents often do not know which nearby services are open or how to access them.',skills:'Research, data, web design',timeline:'4 weeks',deadline:'2026-12-08',budget:'Volunteer led',type:'none',sector:'Technology',loc:'London',hours:18,ask:'A link to a project or example',status:'live',employeeId:null},
+{id:5,charityId:9,title:'Youth club social media starter kit',what:'Create an accessible set of post templates and a short content plan for our winter programme.',why:'We want more local young people to hear about free creative workshops.',skills:'Graphic design, writing, social media',timeline:'2 weeks',deadline:'2026-11-26',budget:'Volunteer led',type:'none',sector:'Arts',loc:'Manchester',hours:8,ask:'A sample design or writing piece',status:'live',employeeId:null},
+{id:6,charityId:7,title:'Website accessibility review',what:'Review the main pages of our site and suggest practical improvements for keyboard and screen-reader users.',why:'We want our resources to work for more students and families.',skills:'Accessibility, testing, writing',timeline:'2 weeks',deadline:'2026-12-12',budget:'Volunteer led',type:'none',sector:'Technology',loc:'Bristol',hours:10,ask:'Tell us about any accessibility experience',status:'live',employeeId:null}],
+apps:[
+{id:201,projectId:2,userId:1,msg:'I can create a clear, accessible leaflet and test it with students.',extra:'Design samples',cv:'amara_cv.pdf',status:'sent'},
+{id:202,projectId:4,userId:5,msg:'I would love to help make local food support easier to find.',extra:'Reading tracker project',cv:'zara_ali_cv.pdf',status:'accepted'},
+{id:203,projectId:6,userId:6,msg:'I can test keyboard navigation and write up clear recommendations.',extra:'School recycling guide',cv:'leo_martins_cv.pdf',status:'sent'}]};
 const me=()=>S.user, co=u=>S.companies.find(c=>c.id===u.companyId), ch=id=>S.users.find(u=>u.id===id), pr=id=>S.projects.find(p=>p.id===id);
 function toast(m,ms=4500){const t=$('toast');t.textContent=m;t.style.display='block';clearTimeout(t._t);t._t=setTimeout(()=>t.style.display='none',ms)}
 function go(v){S.view=v;render();scrollTo(0,0)}
@@ -103,9 +154,9 @@ function render(){
 }
 function home(){return `<section class="hero"><div><span class="hero-kicker">Skills shared, impact multiplied</span><h1>Got a skill issue?</h1><p>Charities, students, and companies bring their skills together to turn good ideas into real community impact.</p></div>
 <div class="tix" aria-label="Examples of people collaborating"><div class="tk"><b>Food bank + web volunteer</b><div class="mut">Building a sign-up site together · 6 weeks</div></div><div class="tk"><b>Student + legal mentor</b><div>Learning together at a tenancy clinic</div></div><div class="tk"><b>Community + interpreters</b><div class="mut">Making a welcome evening accessible</div></div></div></section>
-<h2>Who would you like to connect?</h2><div class="roles">${[['student','01','Student','Team up with charities and learn from experienced mentors.'],['company','02','Company','Share company skills through mentoring and collaboration.'],['charity','03','Charity','Find skilled partners to bring your next project to life.']].map(r=>`<button class="role" onclick="S.role='${r[0]}';S.mode='up';go('auth')"><span class="role-index" aria-hidden="true">${r[1]}</span><strong>${r[2]}</strong><span>${r[3]}</span></button>`).join('')}</div>
-<div class="panel"><h3>Try a demo account</h3><p class="mut">Explore the platform as a student, company, or charity.</p>${[['student','Student'],['company','Company'],['charity','Charity']].map(([r,label])=>`<button class="b sm alt" onclick="demo('${r}')">${label}</button> `).join('')}</div>`}
-function demo(r){S.user=r==='admin'?{id:0,role:'admin',name:'Reviewer'}:S.users.find(u=>u.role===r);go(r==='admin'?'admin':'home')}
+<h2>Who would you like to connect?</h2><div class="roles">${[['student','Student','Team up with charities and learn from experienced mentors.'],['company','Company','Share company skills through mentoring and collaboration.'],['charity','Charity','Find skilled partners to bring your next project to life.']].map(r=>`<button class="role" onclick="S.role='${r[0]}';S.mode='up';go('auth')"><strong>${r[1]}</strong><span>${r[2]}</span></button>`).join('')}</div>
+<div class="panel"><h3>Student demo accounts</h3><p class="mut">Choose a student to explore their profile, applications, and opportunities.</p>${S.users.filter(u=>u.role==='student').map(u=>`<button class="b sm alt" onclick="demo('student',${u.id})">${esc(u.name)}</button> `).join('')}<p class="mut">Other views: ${[['company','Company'],['charity','Charity']].map(([r,label])=>`<button class="b sm alt" onclick="demo('${r}')">${label}</button> `).join('')}</p></div>`}
+function demo(r,id){S.user=id?S.users.find(u=>u.id===id):r==='admin'?{id:0,role:'admin',name:'Reviewer'}:S.users.find(u=>u.role===r);S.matchState={loading:false,error:'',results:[],checked:false};go(r==='admin'?'admin':'home')}
 function dash(){const u=me();if(u.role==='student')return browse();if(u.role==='employee')return browse();if(u.role==='company')return profile();if(u.role==='charity')return mine();return admin()}
 function auth(){const r=S.role||'student',up=S.mode==='up',cos=S.companies.filter(c=>c.verified);
  return `<div class="panel" style="max-width:600px;margin:30px auto"><h2>${up?'Create':'Log in to'} your ${r} account</h2>
@@ -143,18 +194,67 @@ function confirmCode(){const d=S.pend;if($('c').value!==d.code)return err('That 
 function profile(){const u=me(),c=u.companyId&&co(u);
  if(u.role==='company'||u.role==='employee')return `<h2>${u.role==='company'?'Company profile':'Your profile'}</h2><div class="panel"><h3>${esc(c.name)} ${c.verified?'<span class="tag g">Verified</span>':'<span class="tag y">Awaiting verification</span>'}</h3><p>${esc(c.desc)}</p><p class="mut">${esc(c.loc)} · ${esc(c.sector)}</p></div>
  ${u.role==='employee'?`<div class="panel"><h3>${esc(u.name)}</h3><label for="pl">Location</label><input id="pl" value="${esc(u.loc)}"><p class="mut">Employer: ${esc(c.name)}</p><button class="b" onclick="me().loc=$('pl').value;toast('Profile saved')">Save profile</button></div>`:''}`
- return `<h2>Your profile</h2><div class="panel"><div class="row"><div><label for="pn">Name</label><input id="pn" value="${esc(u.name)}"></div><div><label for="pl">Location</label><input id="pl" value="${esc(u.loc)}"></div></div>
- <label for="pv">Values</label><textarea id="pv">${esc(u.values)}</textarea><label for="pi">Interests (comma separated)</label><input id="pi" value="${esc(u.interests)}"><label for="pp">Previous projects</label><textarea id="pp">${esc(u.projects)}</textarea>
- <label for="cv">CV (PDF)</label><input id="cv" type="file" accept=".pdf,.doc,.docx"><p class="mut">Current CV: ${esc(u.cv||'none uploaded yet')}</p><p><button class="b" onclick="saveProf()">Save profile</button></p></div>`}
-function saveProf(){const u=me(),f=$('cv').files[0];Object.assign(u,{name:$('pn').value,loc:$('pl').value,values:$('pv').value,interests:$('pi').value,projects:$('pp').value});if(f)u.cv=f.name;toast('Profile saved');render()}
+ if(u.role==='student'){
+    const initials=(u.name||'Student').trim().split(/\s+/).slice(0,2).map(part=>part[0]).join('').toUpperCase();
+    const imageSource=profileImageSource(u.photo);
+    const photo=imageSource?`<img src="${esc(imageSource)}" alt="${esc(u.name)}" onerror="this.hidden=true;this.nextElementSibling.hidden=false"><span hidden>${esc(initials)}</span>`:esc(initials);
+    const interests=(u.interests||'').split(',').map(x=>x.trim()).filter(Boolean);
+    const links=[profileLink('LinkedIn',u.linkedin),profileLink('GitHub',u.github),profileLink('Portfolio',u.portfolio)].filter(Boolean);
+    const cv=u.cv?`<div class="profile-cv"><span class="profile-cv-icon">CV</span><div><b>${esc(u.cv)}</b><p>${u.cvData?'Attached for this demo session':'Sample CV attached'}</p>${u.cvData?`<a class="profile-cv-link" href="${esc(u.cvData)}" download="${esc(u.cv)}">Download CV</a>`:''}</div></div>`:'<p class="mut">No CV attached yet.</p>';
+    return `<h2 class="sr-only">Your profile</h2><article class="student-profile">
+        <div class="profile-cover" aria-hidden="true"></div>
+        <header class="profile-head"><div class="profile-photo">${photo}</div><div class="profile-identity"><h1>${esc(u.name)}</h1><p>${esc(u.headline||u.year||'Student volunteer')}</p><p>${esc(u.loc||'Location not added')}</p><div class="profile-badges"><span class="tag">${esc(u.year||'Student')}</span><span class="tag g">Open to volunteering</span></div></div></header>
+        <div class="profile-layout"><main>
+            <section class="profile-section"><h2>About</h2><p>${esc(u.bio||'Add a short introduction about your interests, strengths, and the causes you care about.')}</p></section>
+            <section class="profile-section"><h2>Interests and skills</h2><div>${interests.length?interests.map(x=>`<span class="tag">${esc(x)}</span>`).join(''):'<span class="mut">Add interests and skills to help charities find a good match.</span>'}</div></section>
+            <section class="profile-section"><h2>Experience and projects</h2><p>${esc(u.projects||'Add a project, activity, or experience you are proud of.')}</p></section>
+            <section class="profile-section"><h2>Values</h2><p>${esc(u.values||'Add the causes and values that matter to you.')}</p></section>
+        </main><aside>
+            <section class="profile-section"><h2>Links</h2><div class="profile-links">${links.join('')||'<span class="mut">Add your professional links.</span>'}</div></section>
+            <section class="profile-section"><h2>CV</h2>${cv}</section>
+        </aside></div>
+        <details class="profile-editor"><summary>Edit profile</summary>
+            <div class="row"><div><label for="pn">Name</label><input id="pn" value="${esc(u.name||'')}"></div><div><label for="ph">Headline</label><input id="ph" value="${esc(u.headline||'')}" placeholder="e.g. Computing student interested in accessible design"></div>
+            <div><label for="pl">Location</label><input id="pl" value="${esc(u.loc||'')}"></div><div><label for="photo">Profile photo</label><input class="profile-input-file" id="photo" type="file" accept="image/jpeg,image/png,image/webp"></div></div>
+            <label for="pbio">Bio</label><textarea id="pbio" maxlength="600" placeholder="A short introduction about you">${esc(u.bio||'')}</textarea>
+            <div class="row"><div><label for="pv">Values</label><input id="pv" value="${esc(u.values||'')}"></div><div><label for="pi">Interests and skills</label><input id="pi" value="${esc(u.interests||'')}" placeholder="Comma separated"></div></div>
+            <label for="pp">Experience and projects</label><textarea id="pp">${esc(u.projects||'')}</textarea>
+            <div class="row"><div><label for="linkedin">LinkedIn URL</label><input id="linkedin" type="url" value="${esc(u.linkedin||'')}" placeholder="https://www.linkedin.com/in/you"></div><div><label for="github">GitHub URL</label><input id="github" type="url" value="${esc(u.github||'')}" placeholder="https://github.com/you"></div><div><label for="portfolio">Portfolio URL</label><input id="portfolio" type="url" value="${esc(u.portfolio||'')}" placeholder="https://your-site.example"></div><div><label for="cv">CV file</label><input class="profile-input-file" id="cv" type="file" accept=".pdf,.doc,.docx"></div></div>
+            <p class="mut">Files stay in this demo session. Choose files up to 2 MB for photos and 6 MB for CVs.</p><button class="b" onclick="saveProf()">Save profile</button>
+        </details></article>`
+ }
+ return `<h2>Your profile</h2><div class="panel">Profile details are available for student accounts.</div>`}
+function profileImageSource(value){const source=String(value||'');if(/^data:image\/(?:jpeg|png|webp);base64,[a-z0-9+/=]+$/i.test(source))return source;try{const url=new URL(source);return url.protocol==='https:'?url.href:''}catch{return ''}}
+function profileLink(label,value){const raw=String(value||'').trim();if(!raw)return '';try{const url=new URL(/^https?:\/\//i.test(raw)?raw:'https://'+raw);if(!['http:','https:'].includes(url.protocol))return '';return `<a href="${esc(url.href)}" target="_blank" rel="noopener noreferrer">${label} ↗</a>`}catch{return ''}}
+function readProfileFile(file){return new Promise((resolve,reject)=>{const reader=new FileReader();reader.onload=()=>resolve(reader.result);reader.onerror=reject;reader.readAsDataURL(file)})}
+async function saveProf(){const u=me(),photo=$('photo').files[0],cv=$('cv').files[0];if(photo&&(!['image/jpeg','image/png','image/webp'].includes(photo.type)||photo.size>2*1024*1024))return toast('Choose a JPG, PNG, or WebP image smaller than 2 MB.');if(cv&&cv.size>6*1024*1024)return toast('Choose a CV smaller than 6 MB.');
+ Object.assign(u,{name:$('pn').value.trim(),headline:$('ph').value.trim(),loc:$('pl').value.trim(),bio:$('pbio').value.trim(),values:$('pv').value.trim(),interests:$('pi').value.trim(),projects:$('pp').value.trim(),linkedin:$('linkedin').value.trim(),github:$('github').value.trim(),portfolio:$('portfolio').value.trim()});
+ try{if(photo)u.photo=await readProfileFile(photo);if(cv){u.cv=cv.name;u.cvData=await readProfileFile(cv)}}catch{return toast('The selected file could not be read.')};toast('Profile saved');render()}
 function vis(p){const u=me();if(p.status!=='live')return false;
  if(u.role==='student')return p.type==='none'||!!p.employeeId;
  return p.type!=='none'&&(!p.employeeId||p.employeeId===u.id)}
 function browse(){const u=me(),stu=u.role==='student';
  return `<h2>${stu?'Find a project':'Projects that need a company'}</h2><p class="mut">${stu?'Search by keyword, sector, time and location.':'Charities want a mentor, collaborator or shadow host. Offer to help, and the charity picks one company employee.'}</p>
+ ${stu?matchShortlist(u):''}
  <div class="bar"><input id="fq" placeholder="Keyword, e.g. website" value="${esc(S.f.q)}" oninput="S.f.q=this.value;list()" aria-label="Keyword"><select id="fs" onchange="S.f.sector=this.value;list()" aria-label="Sector"><option value="">All sectors</option>${SECTORS.map(s=>`<option ${S.f.sector===s?'selected':''}>${s}</option>`).join('')}</select>
  <select onchange="S.f.time=this.value;list()" aria-label="Time required"><option value="">Any time</option><option value="s" ${S.f.time==='s'?'selected':''}>Under 5 hours</option><option value="m" ${S.f.time==='m'?'selected':''}>5 to 20 hours</option><option value="l" ${S.f.time==='l'?'selected':''}>Over 20 hours</option></select>
  <input placeholder="Location" value="${esc(S.f.loc)}" oninput="S.f.loc=this.value;list()" aria-label="Location"></div><div class="grid" id="list">${cards()}</div>`}
+function matchShortlist(u){const state=S.matchState;const action=u.cvData?`<button class="b" onclick="findMatches()" ${state.loading?'disabled':''}>${state.loading?'Finding matches…':'Find CV matches'}</button>`:`<button class="b alt" onclick="go('profile')">Upload your CV</button>`;
+ const status=state.loading?'<p class="match-state" role="status">Reviewing your CV against open projects…</p>':state.error?`<p class="match-state match-error" role="alert">${esc(state.error)}</p>`:state.checked&&!state.results.length?'<p class="match-state">No compatible projects came back this time. Browse all opportunities below.</p>':'';
+ const results=state.results.map(match=>`<article class="match-result"><div class="match-result-head"><div><h4>${esc(match.project.title)}</h4><span class="mut">${esc(ch(match.project.charityId)?.name||'Community project')} · ${esc(match.project.sector)} · ${esc(match.project.loc)}</span></div><span class="match-score">${match.score}% match</span></div><p>${esc(match.reason)}</p><button class="b sm alt" onclick="apply(${match.project.id})">View project</button></article>`).join('');
+ return `<section class="match-shortlist" aria-labelledby="matchTitle"><div class="match-heading"><div><h3 id="matchTitle">Projects picked for you</h3><p>Get a shortlist based on your CV and student profile.</p></div>${action}</div>${status}${results?`<div class="match-results">${results}</div>`:''}</section>`}
+async function findMatches(){const u=me();if(!u||u.role!=='student')return;if(!u.cvData){S.matchState={loading:false,error:'Upload your CV from your profile to get a matched shortlist.',results:[],checked:false};render();return}
+ const studentId=u.id;const projects=S.projects.filter(p=>vis(p)).map(p=>({id:p.id,title:p.title,description:p.what,impact:p.why,skills:p.skills,sector:p.sector,location:p.loc,hours:p.hours,format:TYPES[p.type],requestedItem:p.ask||''}));
+ if(!projects.length){S.matchState={loading:false,error:'There are no open projects available to match right now.',results:[],checked:true};render();return}
+ S.matchState={loading:true,error:'',results:[],checked:false};render();
+ try{const cvResponse=await fetch(u.cvData);const cvBlob=await cvResponse.blob();const body=new FormData();body.append('cv',cvBlob,u.cv||'student-cv');
+  body.append('profile',JSON.stringify({year:u.year||'',location:u.loc||'',values:u.values||'',interests:u.interests||'',experience:u.projects||''}));body.append('projects',JSON.stringify(projects));
+  const response=await fetch(MATCH_API_URL,{method:'POST',body});if(!response.ok){const errorBody=await response.json().catch(()=>({}));throw new Error(errorBody.error||`Matching service returned ${response.status}.`)}
+  const data=await response.json();if(!Array.isArray(data.matches))throw new Error('The matching service returned an invalid response.');
+  if(!S.user||S.user.id!==studentId)return;const byId=new Map(projects.map(project=>[project.id,project]));const seen=new Set();
+  const results=data.matches.map(match=>{const project=byId.get(Number(match.projectId)),score=Number(match.score);if(!project||!Number.isFinite(score)||seen.has(project.id))return null;seen.add(project.id);return{project,score:Math.max(0,Math.min(100,Math.round(score))),reason:String(match.reason||'This project aligns with your experience and interests.').slice(0,400)}}).filter(Boolean).sort((a,b)=>b.score-a.score).slice(0,5);
+  S.matchState={loading:false,error:'',results,checked:true};render();
+ }catch(error){if(!S.user||S.user.id!==studentId)return;S.matchState={loading:false,error:error instanceof TypeError?'Could not reach /api/project-matches. Start the matching API and try again.':error.message,results:[],checked:true};render()}}
 function list(){$('list').innerHTML=cards()}
 function cards(){const f=S.f,u=me(),stu=u.role==='student';
  const a=S.projects.filter(p=>vis(p)&&(!f.sector||p.sector===f.sector)&&(!f.loc||p.loc.toLowerCase().includes(f.loc.toLowerCase()))&&
@@ -166,7 +266,7 @@ function cards(){const f=S.f,u=me(),stu=u.role==='student';
  <button class="b sm" ${done?'disabled':''} onclick="apply(${p.id})">${done?'Already sent':stu?(p.employeeId?'Apply to mentor':'Offer to help'):'Offer to help'}</button></article>`}).join(''):`<div class="panel">No projects match yet. Clear a filter or check back soon.</div>`}
 function apply(id){const p=pr(id),u=me();
  if(u.role==='student'&&!u.cv){toast('Add your CV on your profile before applying.');return go('profile')}
- $('dlg').innerHTML=`<h3>${esc(p.title)}</h3><p class="mut">${u.role==='student'&&p.employeeId?'Your offer goes straight to the mentor company, which decides who joins.':'Your offer goes to the charity.'}</p><p class="mut"><b>They ask for:</b> ${esc(p.ask||'a short note')}</p>
+ $('dlg').innerHTML=`<h3>${esc(p.title)}</h3><p class="mut">${u.role==='student'&&p.employeeId?'Your offer goes straight to the mentor company, which decides who joins.':'Your offer goes to the charity.'}</p><p class="mut"><b>Requested item:</b> ${esc(p.ask||'A short note')}</p>
  <label for="am">Why you, and how can you help?</label><textarea id="am"></textarea><label for="ax">Requested item (link or text)</label><input id="ax">${u.role==='student'?`<p class="mut">CV attached: ${esc(u.cv)}</p>`:''}
  <p><button class="b" onclick="sendApp(${id})">Send offer</button> <button class="b alt" onclick="$('dlg').close()">Cancel</button></p>`;$('dlg').showModal()}
 function sendApp(id){const u=me();if(!$('am').value.trim())return toast('Add a short message first.');
