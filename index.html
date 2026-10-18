@@ -6,8 +6,7 @@
 <title>Skill Issue – skills for charities</title>
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@500;700;800&family=Figtree:wght@400;600&display=swap" rel="stylesheet">
 <style>
-:root{--ink:#14112b;--paper:#f6f4ff;--card:#fff;--v:#5b3df5;--vs:#e6e1ff;--sun:#ffc93c;--co:#ff6b57;--ok:#1f9d6b;--mut:#615c7d;--line:#d9d4f2}
-@media(prefers-color-scheme:dark){:root{--ink:#f1eeff;--paper:#14112b;--card:#1f1b3d;--v:#9a85ff;--vs:#2e2860;--mut:#aaa5cc;--line:#3a346b}}
+:root{--ink:#18343a;--paper:#f2faf8;--card:#fff;--v:#187a9b;--vs:#dcefeb;--sun:#ffda57;--co:#e87962;--ok:#21835e;--mut:#587176;--line:#cfe3df;--blue:#187a9b;--green:#21835e}
 *{box-sizing:border-box}
 body{margin:0;background:var(--paper);color:var(--ink);font:16px/1.55 Figtree,system-ui,sans-serif}
 h1,h2,h3{font-family:'Bricolage Grotesque',Figtree,sans-serif;line-height:1.05;margin:0 0 .5em}
@@ -15,8 +14,14 @@ h1{font-size:clamp(2.6rem,8vw,5.5rem);font-weight:800;letter-spacing:-.03em}
 h2{font-size:1.8rem}h3{font-size:1.15rem}
 a{color:var(--v)}
 .wrap{max-width:1080px;margin:auto;padding:0 20px}
-nav{display:flex;gap:6px;flex-wrap:wrap;align-items:center;padding:14px 20px;border-bottom:2px solid var(--ink);background:var(--paper);position:sticky;top:0;z-index:5}
-.logo{font:800 1.4rem 'Bricolage Grotesque';margin-right:auto;cursor:pointer;background:var(--sun);color:#14112b;padding:2px 10px;transform:rotate(-2deg)}
+nav{display:flex;gap:6px;flex-wrap:wrap;align-items:center;padding:14px 20px;border-bottom:1px solid var(--line);background:rgba(242,250,248,.94);backdrop-filter:blur(10px);position:sticky;top:0;z-index:5}
+.logo{display:flex;align-items:center;gap:10px;font:800 1.4rem 'Bricolage Grotesque';margin-right:auto;cursor:pointer;color:var(--ink)}
+.logo-mark{position:relative;display:inline-block;width:38px;height:38px;flex:0 0 38px;border:2px solid var(--ink);border-radius:12px;background:var(--sun);box-shadow:3px 3px 0 var(--ink);transform:rotate(-5deg)}
+.logo-mark:before,.logo-mark:after{content:"";position:absolute;height:3px;background:var(--ink);transform-origin:left center;border-radius:3px}
+.logo-mark:before{width:15px;left:10px;top:14px;transform:rotate(-28deg)}
+.logo-mark:after{width:14px;left:11px;top:17px;transform:rotate(35deg)}
+.logo-mark i{position:absolute;width:9px;height:9px;border:2px solid var(--ink);border-radius:50%;background:#fff;z-index:1}
+.logo-mark i:nth-child(1){left:4px;top:13px}.logo-mark i:nth-child(2){right:4px;top:5px;background:#bde4eb}.logo-mark i:nth-child(3){right:5px;bottom:4px;background:#bfe9d4}
 nav button{background:none;border:0;color:var(--ink);font:600 .95rem Figtree;padding:8px 10px;cursor:pointer;border-radius:8px}
 nav button.on,nav button:hover{background:var(--vs)}
 button,.btn{font:600 1rem Figtree;cursor:pointer}
@@ -24,14 +29,19 @@ button,.btn{font:600 1rem Figtree;cursor:pointer}
 .b:active{transform:translate(2px,2px);box-shadow:1px 1px 0 var(--ink)}
 .b.alt{background:var(--card);color:var(--ink)}.b.no{background:var(--co);color:#14112b}.b.sm{padding:5px 12px;font-size:.9rem}
 :focus-visible{outline:3px solid var(--sun);outline-offset:2px}
-.hero{display:grid;grid-template-columns:1.2fr 1fr;gap:40px;align-items:center;padding:56px 0 30px}
+.hero{display:grid;grid-template-columns:1.2fr 1fr;gap:40px;align-items:center;padding:56px 0 30px;background:radial-gradient(ellipse at 84% 48%,#d7efe4 0,transparent 34%),linear-gradient(120deg,#f2faf8,#eaf5f8);border-radius:0 0 24px 24px}
 .hero p{font-size:1.2rem;max-width:34ch;color:var(--mut)}
+.hero-kicker{display:inline-flex;align-items:center;gap:8px;margin-bottom:14px;color:var(--green);font-size:.78rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase}
+.hero-kicker:before{content:"";width:8px;height:8px;border-radius:50%;background:var(--green);box-shadow:0 0 0 5px #d7efe4}
 .tix{position:relative;height:300px}
+.tix:before{content:"";position:absolute;left:35%;top:76px;width:150px;height:150px;border:2px dashed #69a991;border-radius:50%;opacity:.6}
 .tk{position:absolute;width:78%;background:var(--card);border:2px solid var(--ink);border-radius:12px;padding:14px 16px;box-shadow:5px 5px 0 var(--ink)}
-.tk:nth-child(1){top:0;left:0;transform:rotate(-3deg)}.tk:nth-child(2){top:95px;left:20%;transform:rotate(2deg);background:var(--sun);color:#14112b}.tk:nth-child(3){top:190px;left:6%;transform:rotate(-1deg)}
+.tk:nth-child(1){top:0;left:0;transform:rotate(-3deg);z-index:1}.tk:nth-child(2){top:95px;left:20%;transform:rotate(2deg);background:#d9f0e5;color:var(--ink);z-index:2}.tk:nth-child(3){top:190px;left:6%;transform:rotate(-1deg);background:#e1f0f5;z-index:1}
+.tk b:before{content:"";display:inline-block;width:8px;height:8px;margin-right:7px;border-radius:50%;background:var(--green);vertical-align:1px}
 .roles{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;margin:20px 0 50px}
-.role{text-align:left;background:var(--card);color:var(--ink);border:2px solid var(--ink);border-radius:14px;padding:20px;box-shadow:5px 5px 0 var(--ink);transition:transform .15s}
-.role:hover{transform:translate(-2px,-2px)}.role strong{font:800 1.5rem 'Bricolage Grotesque';display:block}.role span{color:var(--mut);font-size:.95rem}
+.role{text-align:left;background:var(--card);color:var(--ink);border:1px solid var(--line);border-radius:12px;padding:20px;box-shadow:3px 4px 0 #c8e2dc;transition:transform .15s}
+.role:hover{transform:translate(-2px,-2px);box-shadow:5px 6px 0 #b6dacf}.role strong{font:800 1.5rem 'Bricolage Grotesque';display:block}.role span{color:var(--mut);font-size:.95rem}
+.role .role-index{display:inline-grid;place-items:center;width:34px;height:34px;margin-bottom:14px;border-radius:50%;background:#dcefeb;color:var(--green);font:800 .85rem Figtree}
 .panel{background:var(--card);border:2px solid var(--ink);border-radius:14px;padding:22px;margin:18px 0}
 .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:16px}
 .proj{background:var(--card);border:2px solid var(--ink);border-radius:12px;padding:18px;display:flex;flex-direction:column;gap:8px}
@@ -87,14 +97,14 @@ function render(){
  company:[['profile','Company'],['team','Employees']],
  charity:[['mine','My projects'],['post','Submit project'],['decide','Offers received']],
  admin:[['admin','Review queue']]}[u.role];
- $('nav').innerHTML=`<nav><span class="logo" onclick="go('home')">Skill Issue</span>`+tabs.map(t=>`<button class="${S.view===t[0]?'on':''}" onclick="go('${t[0]}')">${t[1]}</button>`).join('')+(u?`<button onclick="S.user=null;go('home')">Log out (${esc(u.name)})</button>`:`<button onclick="go('home')">Home</button>`)+`</nav>`;
+ $('nav').innerHTML=`<nav><span class="logo" onclick="go('home')"><span class="logo-mark" aria-hidden="true"><i></i><i></i><i></i></span>Skill Issue</span>`+tabs.map(t=>`<button class="${S.view===t[0]?'on':''}" onclick="go('${t[0]}')">${t[1]}</button>`).join('')+(u?`<button onclick="S.user=null;go('home')">Log out (${esc(u.name)})</button>`:`<button onclick="go('home')">Home</button>`)+`</nav>`;
  const V={home,auth,verify,browse,mine,profile,post,decide,team,admin};
  $('app').innerHTML=(u&&S.view==='home'?dash():V[S.view]())
 }
-function home(){return `<section class="hero"><div><h1>Got a skill issue?</h1><p>Charities post the projects they can't afford to build. Students and professionals pick them up, and learn on real work.</p></div>
-<div class="tix" aria-hidden="true"><div class="tk"><b>Website for a food bank</b><div class="mut">Needs: HTML, design · 6 weeks</div></div><div class="tk"><b>Shadow a solicitor</b><div>Tenancy advice clinic · Legal</div></div><div class="tk"><b>Interpreters needed</b><div class="mut">Welcome evening · 2 hours</div></div></div></section>
-<h2>Who are you?</h2><div class="roles">${[['student','Student','A-level to second-year. Find real projects and mentors.'],['company','Company','Register your firm, verify, and let employees mentor or shadow.'],['charity','Charity','Post what you need built. Get skilled help.']].map(r=>`<button class="role" onclick="S.role='${r[0]}';S.mode='up';go('auth')"><strong>${r[1]}</strong><span>${r[2]}</span></button>`).join('')}</div>
-<div class="panel"><h3>Try the demo quickly</h3><p class="mut">Sign in as a seeded account. Each role sees a different side of the platform.</p>${['student','employee','company','charity'].map(r=>`<button class="b sm alt" onclick="demo('${r}')">${r}</button> `).join('')}</div>`}
+function home(){return `<section class="hero"><div><span class="hero-kicker">Skills shared, impact multiplied</span><h1>Got a skill issue?</h1><p>Charities, students, and companies bring their skills together to turn good ideas into real community impact.</p></div>
+<div class="tix" aria-label="Examples of people collaborating"><div class="tk"><b>Food bank + web volunteer</b><div class="mut">Building a sign-up site together · 6 weeks</div></div><div class="tk"><b>Student + legal mentor</b><div>Learning together at a tenancy clinic</div></div><div class="tk"><b>Community + interpreters</b><div class="mut">Making a welcome evening accessible</div></div></div></section>
+<h2>Who would you like to connect?</h2><div class="roles">${[['student','01','Student','Team up with charities and learn from experienced mentors.'],['company','02','Company','Share company skills through mentoring and collaboration.'],['charity','03','Charity','Find skilled partners to bring your next project to life.']].map(r=>`<button class="role" onclick="S.role='${r[0]}';S.mode='up';go('auth')"><span class="role-index" aria-hidden="true">${r[1]}</span><strong>${r[2]}</strong><span>${r[3]}</span></button>`).join('')}</div>
+<div class="panel"><h3>Try a demo account</h3><p class="mut">Explore the platform as a student, company, or charity.</p>${[['student','Student'],['company','Company'],['charity','Charity']].map(([r,label])=>`<button class="b sm alt" onclick="demo('${r}')">${label}</button> `).join('')}</div>`}
 function demo(r){S.user=r==='admin'?{id:0,role:'admin',name:'Reviewer'}:S.users.find(u=>u.role===r);go(r==='admin'?'admin':'home')}
 function dash(){const u=me();if(u.role==='student')return browse();if(u.role==='employee')return browse();if(u.role==='company')return profile();if(u.role==='charity')return mine();return admin()}
 function auth(){const r=S.role||'student',up=S.mode==='up',cos=S.companies.filter(c=>c.verified);
