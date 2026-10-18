@@ -4,16 +4,18 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Skill Issue – skills for charities</title>
+<link rel="icon" type="image/png" href="logo.png">
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@500;700;800&family=Figtree:wght@400;600&display=swap" rel="stylesheet">
 <style>
 :root{--ink:#18343a;--paper:#f2faf8;--card:#fff;--v:#187a9b;--vs:#dcefeb;--sun:#ffda57;--co:#e87962;--ok:#21835e;--mut:#587176;--line:#cfe3df;--blue:#187a9b;--green:#21835e}
 *{box-sizing:border-box}
 body{margin:0;background:var(--paper);color:var(--ink);font:16px/1.55 Figtree,system-ui,sans-serif}
 h1,h2,h3{font-family:'Bricolage Grotesque',Figtree,sans-serif;line-height:1.05;margin:0 0 .5em}
-h1{font-size:clamp(2.6rem,8vw,5.5rem);font-weight:800;letter-spacing:-.03em}
+h1{font-size:5rem;font-weight:800;letter-spacing:0}
 h2{font-size:1.8rem}h3{font-size:1.15rem}
 a{color:var(--v)}
 .wrap{max-width:1080px;margin:auto;padding:0 20px}
+<<<<<<< HEAD:index.html
 nav{display:flex;gap:6px;flex-wrap:wrap;align-items:center;padding:14px 20px;border-bottom:1px solid var(--line);background:rgba(242,250,248,.94);backdrop-filter:blur(10px);position:sticky;top:0;z-index:5}
 .logo{display:flex;align-items:center;gap:10px;font:800 1.4rem 'Bricolage Grotesque';margin-right:auto;cursor:pointer;color:var(--ink)}
 .logo-mark{position:relative;display:inline-block;width:38px;height:38px;flex:0 0 38px;border:2px solid var(--ink);border-radius:12px;background:var(--sun);box-shadow:3px 3px 0 var(--ink);transform:rotate(-5deg)}
@@ -22,6 +24,11 @@ nav{display:flex;gap:6px;flex-wrap:wrap;align-items:center;padding:14px 20px;bor
 .logo-mark:after{width:14px;left:11px;top:17px;transform:rotate(35deg)}
 .logo-mark i{position:absolute;width:9px;height:9px;border:2px solid var(--ink);border-radius:50%;background:#fff;z-index:1}
 .logo-mark i:nth-child(1){left:4px;top:13px}.logo-mark i:nth-child(2){right:4px;top:5px;background:#bde4eb}.logo-mark i:nth-child(3){right:5px;bottom:4px;background:#bfe9d4}
+=======
+nav{display:flex;gap:6px;flex-wrap:wrap;align-items:center;padding:14px 20px;border-bottom:2px solid var(--ink);background:var(--paper);position:sticky;top:0;z-index:5}
+.logo{display:inline-flex;align-items:center;justify-content:center;width:58px;height:58px;flex:none;margin-right:auto;padding:0;border:0;background:none;box-shadow:none;transform:none;cursor:pointer}
+.logo img{display:block;width:100%;height:100%;object-fit:contain}
+>>>>>>> 016d08c47905956287a16cf4343d358641c76eb0:index(3).html
 nav button{background:none;border:0;color:var(--ink);font:600 .95rem Figtree;padding:8px 10px;cursor:pointer;border-radius:8px}
 nav button.on,nav button:hover{background:var(--vs)}
 button,.btn{font:600 1rem Figtree;cursor:pointer}
@@ -29,6 +36,7 @@ button,.btn{font:600 1rem Figtree;cursor:pointer}
 .b:active{transform:translate(2px,2px);box-shadow:1px 1px 0 var(--ink)}
 .b.alt{background:var(--card);color:var(--ink)}.b.no{background:var(--co);color:#14112b}.b.sm{padding:5px 12px;font-size:.9rem}
 :focus-visible{outline:3px solid var(--sun);outline-offset:2px}
+<<<<<<< HEAD:index.html
 .hero{display:grid;grid-template-columns:1.2fr 1fr;gap:40px;align-items:center;padding:56px 0 30px;background:radial-gradient(ellipse at 84% 48%,#d7efe4 0,transparent 34%),linear-gradient(120deg,#f2faf8,#eaf5f8);border-radius:0 0 24px 24px}
 .hero p{font-size:1.2rem;max-width:34ch;color:var(--mut)}
 .hero-kicker{display:inline-flex;align-items:center;gap:8px;margin-bottom:14px;color:var(--green);font-size:.78rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase}
@@ -55,6 +63,52 @@ button,.btn{font:600 1rem Figtree;cursor:pointer}
 .match-result p{margin:8px 0 0;color:var(--mut);font-size:.92rem}
 .match-state{margin:14px 0 0;color:var(--mut)}
 .match-error{color:#7a1d10}
+=======
+.hero{display:grid;grid-template-columns:1.05fr 1fr;gap:34px;align-items:center;padding:54px 0 40px}
+.hero-copy{position:relative;z-index:1;animation:arrive .55s ease-out both}
+.hero-kicker{display:inline-flex;align-items:center;gap:9px;margin-bottom:20px;padding:6px 10px;border:2px solid var(--ink);background:var(--sun);font-size:.78rem;font-weight:700;text-transform:uppercase}
+.hero-kicker:before{content:"";width:9px;height:9px;border-radius:50%;background:var(--ok)}
+.hero h1{max-width:9ch;font-size:4.8rem;line-height:.94;letter-spacing:0}
+.hero h1 em{color:var(--v);font-style:normal}
+.hero p{font-size:1.12rem;max-width:36ch;margin:18px 0 22px;color:var(--mut)}
+.hero-actions{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.hero-actions a{display:inline-flex;align-items:center;gap:8px;text-decoration:none}
+.hero-note{margin-top:22px;color:var(--mut);font-size:.84rem}
+.project-showcase{padding:16px 0 24px}
+.project-showcase-head{display:flex;justify-content:space-between;align-items:end;gap:20px;margin-bottom:18px}
+.project-showcase-head p{max-width:46ch;margin:0;color:var(--mut)}
+.project-showcase .proj{animation:arrive .45s ease-out both}
+.project-showcase .proj:nth-child(2){animation-delay:.04s}.project-showcase .proj:nth-child(3){animation-delay:.08s}
+.tix{position:relative;min-height:330px;overflow:hidden;padding:26px;background:#126b65;border:2px solid var(--ink);box-shadow:7px 7px 0 var(--ink);animation:arrive .7s .08s ease-out both}
+.tix:before{content:"";position:absolute;inset:0;background-image:radial-gradient(rgba(255,255,255,.25) 1px,transparent 1px);background-size:15px 15px;opacity:.65}
+.tk{position:relative;z-index:1;width:82%;background:var(--card);border:2px solid var(--ink);padding:18px;box-shadow:5px 5px 0 var(--ink)}
+.tk:nth-child(1){transform:rotate(-2deg)}
+.tk:nth-child(2){position:absolute;right:14px;bottom:20px;width:auto;max-width:56%;padding:13px 15px;background:var(--sun);color:#14112b;transform:rotate(3deg)}
+.tk:nth-child(3){display:inline-flex;align-items:center;gap:9px;width:auto;margin:18px 0 0 12px;padding:9px 12px;background:#f58b70;color:#14112b;transform:rotate(-4deg);font-size:.83rem;font-weight:700}
+.tk .brief-label{display:flex;justify-content:space-between;gap:10px;margin-bottom:16px;color:var(--mut);font-size:.74rem;font-weight:700;text-transform:uppercase}
+.tk .brief-title{display:block;max-width:18ch;font:800 1.65rem/1.05 'Bricolage Grotesque',sans-serif}
+.tk .brief-copy{margin:8px 0 14px;color:var(--mut);font-size:.9rem}
+.brief-skills{display:flex;gap:6px;flex-wrap:wrap}
+.brief-skills span{padding:4px 7px;border:1px solid var(--ink);font-size:.68rem;font-weight:700}
+.tk .match-score{display:block;font:800 1.55rem 'Bricolage Grotesque',sans-serif}
+.tk .match-caption{font-size:.72rem;font-weight:700;text-transform:uppercase}
+@keyframes arrive{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}
+.roles{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;margin:20px 0 50px}
+.role{text-align:left;background:var(--card);color:var(--ink);border:2px solid var(--ink);border-radius:14px;padding:20px;box-shadow:5px 5px 0 var(--ink);transition:transform .15s}
+.role-student{background:#146b82;color:#fff;box-shadow:5px 5px 0 #0c4858}
+.role-company{background:#a24a2c;color:#fff;box-shadow:5px 5px 0 #71311e}
+.role-charity{background:#28734a;color:#fff;box-shadow:5px 5px 0 #194b30}
+.role-student span,.role-company span,.role-charity span{color:#fff}
+.role:hover{transform:translate(-2px,-2px)}.role strong{font:800 1.5rem 'Bricolage Grotesque';display:block}.role span{color:var(--mut);font-size:.95rem}
+.panel{background:var(--card);border:2px solid var(--ink);border-radius:14px;padding:22px;margin:18px 0}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:16px}
+.proj{background:var(--card);border:2px solid var(--ink);border-radius:12px;padding:18px;display:flex;flex-direction:column;gap:8px}
+.charity-link{display:flex;align-items:center;gap:10px;width:max-content;max-width:100%;padding:0;border:0;background:none;color:var(--ink);text-align:left;cursor:pointer}
+.charity-link:hover strong{text-decoration:underline}
+.charity-link small{display:block;color:var(--mut);font-size:.8rem}
+.charity-mark{display:grid;place-items:center;flex:none;width:42px;height:42px;padding:3px;border:2px solid var(--ink);border-radius:8px;background:var(--brand,#dce9f2);color:#fff;font:800 .62rem/1 Figtree,sans-serif;text-align:center}
+.charity-project{padding:12px 0;border-top:1px solid var(--line)}
+>>>>>>> 016d08c47905956287a16cf4343d358641c76eb0:index(3).html
 .tag{display:inline-block;font-size:.8rem;font-weight:600;background:var(--vs);padding:2px 10px;border-radius:99px;margin:0 4px 4px 0}
 .tag.y{background:var(--sun);color:#14112b}.tag.g{background:#c9f2e0;color:#0b5238}.tag.r{background:#ffd9d3;color:#7a1d10}
 label{display:block;font-weight:600;margin:12px 0 4px}
@@ -65,7 +119,14 @@ textarea{min-height:80px}
 .mut{color:var(--mut);font-size:.92rem}
 .err{background:#ffd9d3;color:#7a1d10;padding:10px 14px;border-radius:8px;margin:10px 0;font-weight:600}
 #toast{position:fixed;bottom:18px;left:50%;transform:translateX(-50%);background:var(--ink);color:var(--paper);padding:12px 20px;border-radius:10px;z-index:20;max-width:90vw;display:none}
-dialog{border:2px solid var(--ink);border-radius:14px;background:var(--card);color:var(--ink);max-width:520px;width:92vw}
+dialog{border:2px solid var(--ink);border-radius:14px;background:var(--card);color:var(--ink);max-width:600px;width:92vw;max-height:85vh;overflow:auto}
+.privacy-consent{display:flex;align-items:flex-start;gap:9px;margin:18px 0}
+.privacy-consent input{width:auto;flex:none;margin:5px 0 0}
+.privacy-consent label{margin:0;font-weight:400}
+.privacy-consent button{flex:none;padding:0;border:0;background:none;color:var(--v);text-decoration:underline}
+.privacy-copy h3{margin-top:18px}
+.privacy-copy p,.privacy-copy li{margin:8px 0}
+.privacy-copy ul{padding-left:22px}
 .item{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;align-items:center;padding:12px 0;border-top:1px solid var(--line)}
 .student-profile{background:var(--card);border:1px solid var(--line);border-radius:14px;overflow:hidden;margin:22px 0 40px;box-shadow:0 8px 24px rgba(24,52,58,.07)}
 .profile-cover{height:150px;background:linear-gradient(120deg,#cce8ef,#d5efdf);position:relative;overflow:hidden}
@@ -96,20 +157,25 @@ dialog{border:2px solid var(--ink);border-radius:14px;background:var(--card);col
 .profile-editor .mut{margin:8px 0 0}
 .profile-input-file{font-size:.88rem}
 footer{padding:30px 20px;text-align:center}
+<<<<<<< HEAD:index.html
 @media(max-width:760px){.hero{grid-template-columns:1fr}.tix{height:290px}.profile-layout{grid-template-columns:1fr;gap:22px}.profile-cover{height:120px}.profile-head{padding:0 18px;gap:12px}.profile-photo{width:92px;height:92px;flex-basis:92px}.profile-identity h1{font-size:1.6rem}.profile-layout{padding:22px 18px}.profile-editor{padding:18px}}
 @media(prefers-reduced-motion:reduce){*{transition:none!important}}
+=======
+@media(max-width:760px){h1{font-size:3.3rem}.hero{grid-template-columns:1fr;gap:24px;padding-top:36px}.hero h1{max-width:11ch;font-size:3.3rem}.tix{min-height:300px;padding:20px}.tk{width:90%}.tk:nth-child(2){max-width:58%}.project-showcase-head{display:block}.project-showcase-head p{margin-top:6px}}
+@media(prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+>>>>>>> 016d08c47905956287a16cf4343d358641c76eb0:index(3).html
 </style>
 </head>
 <body>
 <div id="nav"></div>
 <main id="app" class="wrap"></main>
-<footer class="mut">Skill Issue · built for the IKU Womxn in STEM Hackathon · demo only, data stays in your browser tab.<br><button class="b sm alt" onclick="demo('admin')" style="margin-top:10px">Platform reviewer demo</button></footer>
+<footer class="mut">Skill Issue · built for the IKU Womxn in STEM Hackathon · demo only, data stays in your browser tab. The Oxfam listing is a fictional concept, not an official opportunity.<br><button class="b sm alt" onclick="privacyPolicy()" style="margin-top:10px">Privacy &amp; data agreement</button> <button class="b sm alt" onclick="demo('admin')" style="margin-top:10px">Platform reviewer demo</button></footer>
 <dialog id="dlg"></dialog><div id="toast" role="status"></div>
 <script>
 const $=id=>document.getElementById(id);
 const esc=s=>String(s??'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
 let _id=100;const nid=()=>++_id;
-const SECTORS=['Technology','Legal','Education','Health','Environment','Arts','Finance'];
+const SECTORS=['Technology','Legal','Education','Health','Environment','Arts','Finance','Community'];
 const TYPES={none:'Direct volunteering',shadow:'Shadowing',mentor:'Mentoring',both:'Shadowing + mentoring'};
 const MATCH_API_URL='http://127.0.0.1:8000/api/scan';
 const YEARS=['A-level Year 12','A-level Year 13','University Year 1','University Year 2','Beyond second year'];
@@ -121,16 +187,27 @@ users:[
 {id:1,role:'student',email:'amara@kcl.ac.uk',pw:'demo',name:'Amara Okafor',loc:'London',year:'University Year 1',values:'Fairness, curiosity',interests:'web design, data, accessibility',projects:'Built a school timetable app',bio:'First-year computing student interested in accessible web design and using technology to make local services easier to find. I enjoy collaborating with community groups and learning from people with different perspectives.',linkedin:'https://www.linkedin.com/',github:'https://github.com/',portfolio:'https://example.com/amara',photo:'https://randomuser.me/api/portraits/women/44.jpg',cv:'amara_cv.pdf',approved:true},
 {id:2,role:'company',email:'lead@northline.com',pw:'demo',name:'Priya Shah',companyId:1,approved:true},
 {id:3,role:'employee',email:'jo@northline.com',pw:'demo',name:'Jo Bennett',companyId:1,loc:'London',approved:true},
+<<<<<<< HEAD:index.html
 {id:4,role:'charity',email:'hello@greenroots.org.uk',pw:'demo',name:'Green Roots',loc:'Manchester',values:'Community, sustainability',charityNo:'1234567',approved:true},
 {id:5,role:'student',email:'zara@ucl.ac.uk',pw:'demo',name:'Zara Ali',loc:'Bristol',year:'University Year 2',values:'Access, empathy',interests:'community research, illustration, education',projects:'Designed a reading tracker for a student society',bio:'Design student who loves turning complex information into friendly, useful experiences. I am keen to contribute creative skills to projects that help young people.',linkedin:'https://www.linkedin.com/',github:'https://github.com/',portfolio:'https://example.com/zara',photo:'https://randomuser.me/api/portraits/women/68.jpg',cv:'zara_ali_cv.pdf',approved:true},
 {id:6,role:'student',email:'leo@kcl.ac.uk',pw:'demo',name:'Leo Martins',loc:'London',year:'A-level Year 13',values:'Teamwork, inclusion',interests:'coding, photography, climate action',projects:'Made a recycling guide for my school',bio:'A-level student building confidence in front-end development. I like practical challenges, thoughtful teamwork, and projects that make a visible difference nearby.',linkedin:'https://www.linkedin.com/',github:'https://github.com/',portfolio:'https://example.com/leo',photo:'https://randomuser.me/api/portraits/men/32.jpg',cv:'leo_martins_cv.pdf',approved:true},
 {id:7,role:'charity',email:'team@bookbridge.example',pw:'demo',name:'BookBridge Collective',loc:'Bristol',approved:true},
 {id:8,role:'charity',email:'hello@neighbourhoodfood.example',pw:'demo',name:'Neighbourhood Food Network',loc:'London',approved:true},
 {id:9,role:'charity',email:'youth@brightsteps.example',pw:'demo',name:'Bright Steps Youth',loc:'Manchester',approved:true}],
+=======
+{id:4,role:'charity',email:'hello@greenroots.org.uk',pw:'demo',name:'Green Roots',loc:'Manchester',values:'Community, sustainability',charityNo:'1234567',about:'A local community group creating greener shared spaces and helping neighbours take part in practical environmental projects.',focus:'Community gardens, urban nature, environmental education',serves:'Local residents, families and volunteer groups',waysToHelp:'Garden days, event promotion, accessible digital tools',logo:'GR',brandColor:'#28734a',approved:true}],
+>>>>>>> 016d08c47905956287a16cf4343d358641c76eb0:index(3).html
 companies:[{id:1,name:'Northline Capital',loc:'London',sector:'Finance',desc:'Trading and technology firm with a volunteering programme.',domain:'northline.com',verified:true}],
+charities:[
+{id:5,name:'Oxfam GB',loc:'United Kingdom and internationally',about:'Oxfam GB is part of a global confederation working with people and partners to tackle poverty and inequality. Its work includes humanitarian response, campaigning for change and supporting communities facing crises.',focus:'Poverty and inequality, humanitarian response, climate justice, gender justice',serves:'People and communities affected by poverty, inequality and humanitarian emergencies',waysToHelp:'Learn about campaigns, fundraise, volunteer, or explore current roles through Oxfam’s official website',website:'https://www.oxfam.org.uk/',logo:'OXFAM',brandColor:'#14558f',demoOnly:true},
+{id:6,name:'Northside Community Pantry',loc:'Manchester',about:'A fictional neighbourhood food project connecting local residents with affordable groceries and community support.',focus:'Food access, community connection, waste reduction',serves:'Residents facing food insecurity in the local area',waysToHelp:'Share service information, create accessible campaign materials, volunteer at pantry sessions',logo:'NCP',brandColor:'#b34d32'},
+{id:7,name:'North West Housing Advice',loc:'North West England',about:'A fictional community advice charity helping residents understand housing support and find trusted local services. Legal information projects are reviewed by qualified advisers before publication.',focus:'Housing advice, tenant support, access to services',serves:'Renters and households seeking housing support',waysToHelp:'Create plain-language resources, improve service directories, support supervised advice sessions',logo:'NWHA',brandColor:'#356477'},
+{id:8,name:'ByteBack Digital Skills',loc:'Manchester',about:'A fictional education charity helping young people and adults build confidence with technology through free workshops and mentoring.',focus:'Digital inclusion, technology education, mentoring',serves:'Young people and adults with limited access to digital skills training',waysToHelp:'Mentor learners, improve workshop tools, build accessible learning materials',logo:'BYTE',brandColor:'#345b9a'},
+{id:9,name:'ClearPath Community Health',loc:'Manchester',about:'A fictional community health charity making local wellbeing services easier to find and access.',focus:'Community wellbeing, health information, service access',serves:'Local residents looking for accessible wellbeing support',waysToHelp:'Improve service information, design accessible materials, help organize community events',logo:'CPH',brandColor:'#287c70'}],
 projects:[
 {id:1,charityId:4,title:'Volunteer sign-up website',what:'A simple responsive website where locals can sign up for garden days.',why:'Our paper sign-up sheets lose people. A site would double our volunteers.',skills:'HTML, CSS, JavaScript, design',timeline:'6 weeks',deadline:'2026-12-15',budget:'£0 (volunteer led)',type:'mentor',sector:'Technology',loc:'Manchester',hours:25,ask:'Link to any past web project',status:'live',employeeId:null},
 {id:2,charityId:4,title:'Leaflet design for open day',what:'Print-ready A5 leaflet.',why:'Reaches households without internet.',skills:'Graphic design',timeline:'2 weeks',deadline:'2026-11-20',budget:'£50 printing',type:'none',sector:'Arts',loc:'Manchester',hours:4,ask:'Portfolio or sketches',status:'live',employeeId:null},
+<<<<<<< HEAD:index.html
 {id:3,charityId:7,title:'Digital reading buddy toolkit',what:'Create a set of simple printable and web-friendly reading activities for volunteer tutors.',why:'Our volunteers need engaging materials they can adapt for different reading levels.',skills:'Education, writing, web design',timeline:'3 weeks',deadline:'2026-11-30',budget:'Volunteer led',type:'none',sector:'Education',loc:'Bristol',hours:12,ask:'A short note about your relevant skills',status:'live',employeeId:null},
 {id:4,charityId:8,title:'Map local food support',what:'Build a clear mobile-friendly directory of community fridges and food support sessions.',why:'Residents often do not know which nearby services are open or how to access them.',skills:'Research, data, web design',timeline:'4 weeks',deadline:'2026-12-08',budget:'Volunteer led',type:'none',sector:'Technology',loc:'London',hours:18,ask:'A link to a project or example',status:'live',employeeId:null},
 {id:5,charityId:9,title:'Youth club social media starter kit',what:'Create an accessible set of post templates and a short content plan for our winter programme.',why:'We want more local young people to hear about free creative workshops.',skills:'Graphic design, writing, social media',timeline:'2 weeks',deadline:'2026-11-26',budget:'Volunteer led',type:'none',sector:'Arts',loc:'Manchester',hours:8,ask:'A sample design or writing piece',status:'live',employeeId:null},
@@ -140,6 +217,17 @@ apps:[
 {id:202,projectId:4,userId:5,msg:'I would love to help make local food support easier to find.',extra:'Reading tracker project',cv:'zara_ali_cv.pdf',status:'accepted'},
 {id:203,projectId:6,userId:6,msg:'I can test keyboard navigation and write up clear recommendations.',extra:'School recycling guide',cv:'leo_martins_cv.pdf',status:'sent'}]};
 const me=()=>S.user, co=u=>S.companies.find(c=>c.id===u.companyId), ch=id=>S.users.find(u=>u.id===id), pr=id=>S.projects.find(p=>p.id===id);
+=======
+{id:3,charityId:5,title:'Digital poster for a new community initiative',what:'Create a bright, accessible digital poster introducing a fictional “Share, Repair, Reuse” community initiative for social media and email.',why:'A clear campaign visual can help more people discover the initiative and take part.',skills:'Graphic design, Digital marketing, Accessibility',timeline:'2 weeks',deadline:'2026-12-01',budget:'Volunteer project',type:'none',sector:'Arts',loc:'Remote',hours:12,ask:'Portfolio or sample poster',status:'live',employeeId:null},
+{id:4,charityId:4,title:'Accessible volunteer welcome video',what:'Edit a short welcome video with captions and a clear call to action for new garden volunteers.',why:'A short, captioned introduction helps more people feel confident joining their first event.',skills:'Video editing, Accessibility, Content writing',timeline:'3 weeks',deadline:'2026-12-10',budget:'Volunteer led',type:'none',sector:'Technology',loc:'Manchester',hours:10,ask:'A video sample or editing reel',status:'live',employeeId:null},
+{id:5,charityId:6,title:'Social campaign for the winter pantry',what:'Design a small set of digital posts explaining pantry opening times and how neighbours can access support.',why:'Residents need clear, welcoming information that is easy to share on mobile.',skills:'Graphic design, Digital marketing, Accessibility',timeline:'2 weeks',deadline:'2026-12-05',budget:'Volunteer project',type:'none',sector:'Community',loc:'Manchester',hours:8,ask:'A sample social post or design portfolio',status:'live',employeeId:null},
+{id:6,charityId:4,title:'Volunteer garden-day booking tool',what:'Build a simple mobile-friendly booking page so neighbours can choose a garden session and see what to bring.',why:'A clear booking flow will reduce missed messages and make it easier for new volunteers to join.',skills:'Web Development, UI/UX Design, Accessibility',timeline:'4 weeks',deadline:'2027-01-15',budget:'Volunteer led',type:'none',sector:'Technology',loc:'Manchester',hours:24,ask:'A link to a website or prototype',status:'live',employeeId:null},
+{id:7,charityId:7,title:'Plain-language housing rights guide',what:'Help turn adviser-approved housing information into a clear, accessible online guide with links to trusted support.',why:'Residents need reliable information they can understand before contacting an advice service.',skills:'Legal research, Plain-language writing, Accessibility',timeline:'4 weeks',deadline:'2027-01-20',budget:'Volunteer project',type:'none',sector:'Legal',loc:'Remote',hours:18,ask:'A writing or research sample',status:'live',employeeId:null},
+{id:8,charityId:8,title:'Digital skills workshop booking page',what:'Create a small page where learners can view free workshop dates and reserve a place.',why:'A simple sign-up route will help more people access practical digital-skills sessions.',skills:'Web Development, UI/UX Design, Accessibility',timeline:'5 weeks',deadline:'2027-01-25',budget:'Volunteer led',type:'none',sector:'Education',loc:'Manchester',hours:30,ask:'A website or design portfolio',status:'live',employeeId:null},
+{id:9,charityId:9,title:'Community clinic service finder',what:'Design an accessible directory page for local wellbeing services, with opening times and contact details.',why:'People should be able to find the right local service quickly, especially on a phone.',skills:'Web Development, Data Analysis, Accessibility',timeline:'4 weeks',deadline:'2027-02-01',budget:'Volunteer project',type:'none',sector:'Health',loc:'Manchester',hours:28,ask:'A relevant project sample',status:'live',employeeId:null}],
+apps:[]};
+const me=()=>S.user, co=u=>S.companies.find(c=>c.id===u.companyId), ch=id=>S.users.find(u=>u.id===id)||S.charities.find(c=>c.id===id), pr=id=>S.projects.find(p=>p.id===id);
+>>>>>>> 016d08c47905956287a16cf4343d358641c76eb0:index(3).html
 function toast(m,ms=4500){const t=$('toast');t.textContent=m;t.style.display='block';clearTimeout(t._t);t._t=setTimeout(()=>t.style.display='none',ms)}
 function go(v){S.view=v;render();scrollTo(0,0)}
 function render(){
@@ -148,6 +236,7 @@ function render(){
  company:[['profile','Company'],['team','Employees']],
  charity:[['mine','My projects'],['post','Submit project'],['decide','Offers received']],
  admin:[['admin','Review queue']]}[u.role];
+<<<<<<< HEAD:index.html
  $('nav').innerHTML=`<nav><span class="logo" onclick="go('home')"><span class="logo-mark" aria-hidden="true"><i></i><i></i><i></i></span>Skill Issue</span>`+tabs.map(t=>`<button class="${S.view===t[0]?'on':''}" onclick="go('${t[0]}')">${t[1]}</button>`).join('')+(u?`<button onclick="S.user=null;go('home')">Log out (${esc(u.name)})</button>`:`<button onclick="go('home')">Home</button>`)+`</nav>`;
  const V={home,auth,verify,browse,mine,profile,post,decide,team,admin};
  $('app').innerHTML=(u&&S.view==='home'?dash():V[S.view]())
@@ -157,12 +246,27 @@ function home(){return `<section class="hero"><div><span class="hero-kicker">Ski
 <h2>Who would you like to connect?</h2><div class="roles">${[['student','Student','Team up with charities and learn from experienced mentors.'],['company','Company','Share company skills through mentoring and collaboration.'],['charity','Charity','Find skilled partners to bring your next project to life.']].map(r=>`<button class="role" onclick="S.role='${r[0]}';S.mode='up';go('auth')"><strong>${r[1]}</strong><span>${r[2]}</span></button>`).join('')}</div>
 <div class="panel"><h3>Student demo accounts</h3><p class="mut">Choose a student to explore their profile, applications, and opportunities.</p>${S.users.filter(u=>u.role==='student').map(u=>`<button class="b sm alt" onclick="demo('student',${u.id})">${esc(u.name)}</button> `).join('')}<p class="mut">Other views: ${[['company','Company'],['charity','Charity']].map(([r,label])=>`<button class="b sm alt" onclick="demo('${r}')">${label}</button> `).join('')}</p></div>`}
 function demo(r,id){S.user=id?S.users.find(u=>u.id===id):r==='admin'?{id:0,role:'admin',name:'Reviewer'}:S.users.find(u=>u.role===r);S.matchState={loading:false,error:'',results:[],checked:false};go(r==='admin'?'admin':'home')}
+=======
+ document.body.dataset.role=u?.role==='employee'?'company':u?.role||'guest';document.body.dataset.view=S.view;
+ $('nav').innerHTML=`<nav><button class="logo" type="button" onclick="go('home')" aria-label="Skill Issue home"><img src="logo.png" alt="Skill Issue · Commit to change"></button>`+tabs.map(t=>`<button class="${S.view===t[0]?'on':''}" onclick="go('${t[0]}')">${t[1]}</button>`).join('')+(u?`<button onclick="S.user=null;go('home')">Log out (${esc(u.name)})</button>`:`<button onclick="go('home')">Home</button>`)+`</nav>`;
+ const V={home,auth,verify,browse,mine,profile,post,decide,team,admin};
+ $('app').innerHTML=(u&&S.view==='home'?dash():V[S.view]())
+}
+function home(){return `<section class="hero"><div class="hero-copy"><div class="hero-kicker">Skills in service · projects with purpose</div><h1>Good skills.<br><em>Real good.</em></h1><p>Charities have a mission. You have a skill. Bring them together on useful projects that make a difference in the real world.</p><div class="hero-actions"><a class="b" href="#open-projects">Find your next project <span aria-hidden="true">↘</span></a><button class="b alt" onclick="S.role='charity';S.mode='up';go('auth')">I'm a charity</button></div><div class="hero-note">Creative work · Digital skills · Community impact</div></div>
+<div class="tix" aria-label="Example digital campaign project"><div class="tk"><div class="brief-label"><span>Open brief / Community</span><span>01—03</span></div><strong class="brief-title">Make the good stuff impossible to miss.</strong><p class="brief-copy">A digital campaign poster for a local community pantry.</p><div class="brief-skills"><span>Graphic design</span><span>Accessibility</span></div></div><div class="tk"><span class="match-caption">A little time can go a long way</span><strong class="match-score">08 hrs</strong><span>Estimated project time</span></div><div class="tk">DESIGN <span aria-hidden="true">+</span> IMPACT</div></div></section>
+<h2 id="role-choices">Where do you fit?</h2><div class="roles">${[['student','Student','A-level to second-year. Find real projects and mentors.'],['company','Company','Register your firm, verify, and let employees mentor or shadow.'],['charity','Charity','Post what you need built. Get skilled help.']].map(r=>`<button class="role role-${r[0]}" onclick="S.role='${r[0]}';S.mode='up';go('auth')"><strong>${r[1]}</strong><span>${r[2]}</span></button>`).join('')}</div>
+<section id="open-projects" class="project-showcase"><div class="project-showcase-head"><div><h2>Open projects</h2><p>Real briefs from charities, ready for the right skills. Explore the work before you create an account.</p></div><span class="tag g">${S.projects.filter(p=>p.status==='live').length} opportunities</span></div><div class="grid">${homeProjects()}</div></section>
+<div class="panel"><h3>Try the demo quickly</h3><p class="mut">Sign in as a seeded account. Each role sees a different side of the platform.</p>${['student','employee','company','charity'].map(r=>`<button class="b sm alt" onclick="demo('${r}')">${r}</button> `).join('')}</div>`}
+function homeProjects(){return S.projects.filter(p=>p.status==='live').map(p=>{const charity=ch(p.charityId),mark=charityMark(charity);return `<article class="proj"><button class="charity-link" onclick="openCharity(${charity.id})" aria-label="View ${esc(charity.name)} charity profile"><span class="charity-mark" style="--brand:${esc(mark.color)}">${esc(mark.label)}</span><span><strong>${esc(charity.name)}</strong><small>View charity profile and projects</small></span></button><h3>${esc(p.title)}</h3><div><span class="tag y">${esc(p.sector)}</span><span class="tag">${esc(p.loc)}</span><span class="tag">~${esc(p.hours)} hrs</span></div><div>${esc(p.what)}</div><div class="mut"><b>Skills:</b> ${esc(p.skills)}</div><button class="b sm" onclick="S.role='student';S.mode='up';go('auth')">Offer to help</button></article>`}).join('')}
+function demo(r){S.user=r==='admin'?{id:0,role:'admin',name:'Reviewer'}:S.users.find(u=>u.role===r);go(r==='admin'?'admin':'home')}
+>>>>>>> 016d08c47905956287a16cf4343d358641c76eb0:index(3).html
 function dash(){const u=me();if(u.role==='student')return browse();if(u.role==='employee')return browse();if(u.role==='company')return profile();if(u.role==='charity')return mine();return admin()}
 function auth(){const r=S.role||'student',up=S.mode==='up',cos=S.companies.filter(c=>c.verified);
  return `<div class="panel" style="max-width:600px;margin:30px auto"><h2>${up?'Create':'Log in to'} your ${r} account</h2>
  <p class="mut">${up?'Use your own '+({student:'school or university',charity:'charity',company:'company'}[r])+' email. Free email addresses are not accepted.':''}</p><div id="err"></div>
  ${up?`<label for="n">${r==='charity'?'Charity name':'Full name'}</label><input id="n">`:''}
  <label for="e">Email</label><input id="e" type="email"><label for="p">Password</label><input id="p" type="password">
+ ${up?`<div class="privacy-consent"><input id="privacyConsent" type="checkbox"><label for="privacyConsent">I have read and agree to the privacy and data agreement.</label><button type="button" onclick="privacyPolicy()">Read agreement</button></div>`:''}
  ${up&&r==='student'?`<label for="y">Current study stage</label><select id="y">${YEARS.map(y=>`<option>${y}</option>`).join('')}</select>`:''}
  ${up&&r==='charity'?`<label for="cn">Charity Commission registration number</label><input id="cn" inputmode="numeric" placeholder="e.g. 1234567"><label for="l">Location</label><input id="l"><label for="v">Values</label><textarea id="v"></textarea>`:''}
  ${up&&r==='company'?`<label for="k">I am</label><select id="k" onchange="$('nc').style.display=this.value==='new'?'block':'none';$('ex').style.display=this.value==='new'?'none':'block'"><option value="new">Registering a new company</option><option value="emp">An employee of a registered company</option></select>
@@ -170,10 +274,12 @@ function auth(){const r=S.role||'student',up=S.mode==='up',cos=S.companies.filte
  <div id="nc"><label for="cn2">Company name</label><input id="cn2"><label for="cl">Location</label><input id="cl"><label for="cs">Sector</label><select id="cs">${SECTORS.map(s=>`<option>${s}</option>`).join('')}</select><label for="cd">Description</label><textarea id="cd"></textarea></div>`:''}
  <p><button class="b" onclick="${up?'signup()':'login()'}">${up?'Create account':'Log in'}</button> <button class="b alt" onclick="S.mode='${up?'in':'up'}';render()">${up?'I have an account':'Create account'}</button></p></div>`}
 const err=m=>$('err').innerHTML=`<div class="err" role="alert">${m}</div>`;
+function privacyPolicy(){$('dlg').innerHTML=`<div class="privacy-copy"><h2>Privacy &amp; data agreement</h2><p><b>This is a hackathon demo, not a production service.</b> Please use fictional details and do not enter sensitive personal information.</p><h3>What this demo handles</h3><p>When you create an account or use the demo, it may hold the name, organisation email, role, profile details, project details, application messages and feedback you enter. If you choose a CV file, this demo records only its filename; it does not upload the file.</p><h3>Where the information goes</h3><p>The demo has no application server. Its sample and entered data stays in the current browser page and is lost when the page is refreshed or closed. It is not sent to a matching service. Google Fonts may receive a request from your browser to load the typefaces used on this page. External charity websites only receive a visit if you choose to open their links.</p><h3>Your choices and production use</h3><p>You can close the page to clear this demo session. Before using real charity, student, employee or company data, the service would need secure accounts, a clear retention and deletion process, appropriate access controls, and a privacy notice reviewed for the applicable laws.</p><p><button class="b alt" onclick="$('dlg').close()">Close</button></p></div>`;$('dlg').showModal()}
 function login(){const u=S.users.find(x=>x.email===$('e').value.trim().toLowerCase()&&x.pw===$('p').value);
  if(!u)return err('Email or password not recognised.');if(u.role!==S.role)return err(`This email is registered as a ${u.role}. Pick that role on the home page.`);
  if(!u.approved)return err('Your account is still waiting for verification.');S.user=u;go('home')}
 function signup(){const r=S.role,e=$('e').value.trim().toLowerCase(),n=($('n')||{}).value?.trim(),p=$('p').value;
+ if(!$('privacyConsent').checked)return err('Read and agree to the privacy and data agreement to create an account.');
  if(!/^\S+@\S+\.\S+$/.test(e))return err('Enter a valid email address.');if(!p||p.length<4)return err('Password needs at least 4 characters.');
  if(S.users.some(u=>u.email===e))return err('That email is already registered.');
  if(FREE.test(e))return err('Free email providers are not accepted. Use your organisation email.');
@@ -255,18 +361,26 @@ async function scanCV(file){const u=me();if(!u||u.role!=='student'||!file)return
   S.matchState={loading:false,error:'',results,candidateSummary:String(data.candidate_summary||''),checked:true};render();
  }catch(error){if(!S.user||S.user.id!==studentId)return;S.matchState={loading:false,error:error instanceof TypeError?'Could not reach http://127.0.0.1:8000/api/scan. Start the matching API and try again.':error.message,results:[],candidateSummary:'',checked:true};render()}}
 function list(){$('list').innerHTML=cards()}
+function charityMark(charity){const initials=charity.name.split(/\s+/).filter(Boolean).slice(0,2).map(word=>word[0]).join('').toUpperCase();return {label:charity.logo||initials,color:charity.brandColor||'#5b3df5'}}
+function openCharity(id){const charity=ch(id);if(!charity)return;const mark=charityMark(charity),projects=S.projects.filter(p=>p.charityId===id),facts=[['Focus areas',charity.focus],['Who they support',charity.serves],['Ways to get involved',charity.waysToHelp]].filter(([,value])=>value);
+ $('dlg').innerHTML=`<div style="display:flex;align-items:center;gap:14px"><span class="charity-mark" style="--brand:${esc(mark.color)};width:58px;height:58px">${esc(mark.label)}</span><div><div class="mut">Charity profile · ${esc(charity.loc||'Location not provided')}</div><h2>${esc(charity.name)}</h2></div></div><p>${esc(charity.about||'This charity has not added a profile description yet.')}</p>${facts.length?`<div class="panel">${facts.map(([label,value])=>`<p><b>${esc(label)}:</b> ${esc(value)}</p>`).join('')}</div>`:''}${charity.website?`<p><a href="${esc(charity.website)}" target="_blank" rel="noopener noreferrer">Visit ${esc(charity.name)}’s official website</a></p>`:''}${charity.demoOnly?'<p class="err">The project shown here is a fictional demo brief, not an official Oxfam opportunity. Check Oxfam’s website for real opportunities.</p>':''}<h3>Projects (${projects.length})</h3>${projects.length?projects.map(p=>`<div class="charity-project"><b>${esc(p.title)}</b><div class="mut">${esc(p.sector)} · Skills: ${esc(p.skills)} · ${esc(p.hours)} hours · ${esc(p.loc)}</div><p>${esc(p.what)}</p><span class="tag ${p.status==='live'?'g':'y'}">${p.status==='live'?'Open':'In progress'}</span></div>`).join(''):'<p class="mut">No projects posted yet.</p>'}<p><button class="b alt" onclick="$('dlg').close()">Close</button></p>`;$('dlg').showModal()}
 function cards(){const f=S.f,u=me(),stu=u.role==='student';
  const a=S.projects.filter(p=>vis(p)&&(!f.sector||p.sector===f.sector)&&(!f.loc||p.loc.toLowerCase().includes(f.loc.toLowerCase()))&&
  (!f.time||(f.time==='s'?p.hours<5:f.time==='m'?p.hours>=5&&p.hours<=20:p.hours>20))&&
  (!f.q||(p.title+p.what+p.skills+p.sector).toLowerCase().includes(f.q.toLowerCase())));
- return a.length?a.map(p=>{const done=S.apps.some(x=>x.projectId===p.id&&x.userId===u.id);return `<article class="proj"><h3>${esc(p.title)}</h3><div><span class="tag y">${TYPES[p.type]}</span><span class="tag">${p.sector}</span><span class="tag">${esc(p.loc)}</span><span class="tag">~${p.hours} hrs</span></div>
- <div>${esc(p.what)}</div><div class="mut"><b>Why it matters:</b> ${esc(p.why)}</div><div class="mut">By ${esc(ch(p.charityId).name)} · Skills: ${esc(p.skills)} · Deadline ${esc(p.deadline)} · Budget ${esc(p.budget)}</div>
+ return a.length?a.map(p=>{const done=S.apps.some(x=>x.projectId===p.id&&x.userId===u.id),charity=ch(p.charityId),mark=charityMark(charity);return `<article class="proj"><button class="charity-link" onclick="openCharity(${charity.id})" aria-label="View ${esc(charity.name)} charity profile"><span class="charity-mark" style="--brand:${esc(mark.color)}">${esc(mark.label)}</span><span><strong>${esc(charity.name)}</strong><small>View charity profile and projects</small></span></button><h3>${esc(p.title)}</h3><div><span class="tag y">${TYPES[p.type]}</span><span class="tag">${p.sector}</span><span class="tag">${esc(p.loc)}</span><span class="tag">~${p.hours} hrs</span></div>
+ <div>${esc(p.what)}</div><div class="mut"><b>Why it matters:</b> ${esc(p.why)}</div><div class="mut">Skills: ${esc(p.skills)} · Deadline ${esc(p.deadline)} · Budget ${esc(p.budget)}</div>
  ${p.employeeId?`<div class="mut">Mentor company: ${esc(co(ch(p.employeeId)).name)}</div>`:''}
  <button class="b sm" ${done?'disabled':''} onclick="apply(${p.id})">${done?'Already sent':stu?(p.employeeId?'Apply to mentor':'Offer to help'):'Offer to help'}</button></article>`}).join(''):`<div class="panel">No projects match yet. Clear a filter or check back soon.</div>`}
 function apply(id){const p=pr(id),u=me();
  if(u.role==='student'&&!u.cv){toast('Add your CV on your profile before applying.');return go('profile')}
+<<<<<<< HEAD:index.html
  $('dlg').innerHTML=`<h3>${esc(p.title)}</h3><p class="mut">${u.role==='student'&&p.employeeId?'Your offer goes straight to the mentor company, which decides who joins.':'Your offer goes to the charity.'}</p><p class="mut"><b>Requested item:</b> ${esc(p.ask||'A short note')}</p>
  <label for="am">Why you, and how can you help?</label><textarea id="am"></textarea><label for="ax">Requested item (link or text)</label><input id="ax">${u.role==='student'?`<p class="mut">CV attached: ${esc(u.cv)}</p>`:''}
+=======
+ $('dlg').innerHTML=`<h3>${esc(p.title)}</h3><p class="mut">${u.role==='student'&&p.employeeId?'Your offer goes straight to the mentor company, which decides who joins.':'Your offer goes to the charity.'}</p><p class="mut"><b>They ask for:</b> ${esc(p.ask||'a short note')}</p>
+ <label for="am">Why you, and how can you help?</label><textarea id="am"></textarea><label for="ax">Requested item</label><input id="ax">${u.role==='student'?`<p class="mut">CV attached: ${esc(u.cv)}</p>`:''}
+>>>>>>> 016d08c47905956287a16cf4343d358641c76eb0:index(3).html
  <p><button class="b" onclick="sendApp(${id})">Send offer</button> <button class="b alt" onclick="$('dlg').close()">Cancel</button></p>`;$('dlg').showModal()}
 function sendApp(id){const u=me();if(!$('am').value.trim())return toast('Add a short message first.');
  S.apps.push({id:nid(),projectId:id,userId:u.id,msg:$('am').value,extra:$('ax').value,cv:u.cv,status:'sent'});$('dlg').close();toast('Offer sent');render()}
